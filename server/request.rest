@@ -1,0 +1,169 @@
+POST http://192.168.1.125:3000/signUpUser
+Content-Type: application/json
+
+{
+    "firstName": "Archie",
+    "lastName": "Efendi",
+    "email": "archievian5@gmail.com",
+    "password": "12345678",
+    "phoneNumber": "081265809999",
+    "elementarySchool": "SD AL-KAUTSAR",
+    "juniorHighSchool": "Madrasah Tsanawiyah Negeri 1 Malang",
+    "seniorHighSchool": "Madrasah Aliyah Negeri 2 Malang",
+    "university": "Universitas Brawijaya",
+    "gender": "MALE",
+    "about": "Hai Aku Archie ...",
+    "birthdate": "2003-12-27"
+}
+### SignInUser
+POST http://192.168.1.125:3000/signInUser
+Content-Type: application/json
+
+{
+  "email": "archievian5@gmail.com",
+  "password": "1234567"
+}
+
+### SignUpEventOrganizer
+POST http://192.168.1.125:3000/signUpEventOrganizer
+Content-Type: application/json
+
+{
+  "email": "hologybrawijaya@ub.ac.id",
+  "password": "password123",
+  "organizerName": "Hology Universitas Brawijaya",
+  "organizerInstitution": "Universitas Brawijaya",
+  "organizerAddress": "Jalan Veteran",
+  "phoneNumber": "081265897999"
+}
+
+### Sign In Event Organizer
+POST http://192.168.1.125:3000/signInEventOrganizer
+Content-Type: application/json
+
+{
+  "email": "hologybrawijaya@ub.ac.id",
+  "password": "password123"
+}
+
+### CreateCompetition
+POST http://192.168.1.125:3000/createCompetition
+Content-Type: application/json
+
+{
+  "idOrganizer": 1,
+  "competitionName": "Hology Competition",
+  "competitionCategory": "Business Plan",
+  "jenjang": "Umum",
+  "registrationDate": "2023-12-01",
+  "deskripsi": "Deskripsi Kompetisi",
+  "tingkat": "Nasional",
+  "prizes": 1000.00,
+  "requirement": "Persyaratan Kompetisi",
+  "capacityTotal": 2
+}
+
+### ViewAllCompetitions
+GET http://192.168.1.125:3000/viewAllCompetitions
+
+### ViewCompetitionsByJenjang
+GET http://192.168.1.125:3000/viewCompetitionsByJenjang/Umum
+
+### ViewCompetitionsByTingkat
+GET http://192.168.1.125:3000/viewCompetitionsByTingkat/Nasional
+
+### ViewCompetitionsByTingkatJenjang
+GET http://192.168.1.125:3000/viewCompetitionsByTingkatJenjang/Nasional/Sekolah%20Dasar
+
+### CreateAcademicEvent
+POST http://192.168.1.125:3000/createAcademicEvent
+Content-Type: application/json
+
+{
+  "idOrganizer": 1,
+  "eventsName": "Hology Webinar IoT",
+  "eventsLoc": "Gedung Algoritma Filkom UB",
+  "eventsJenjang": "Umum",
+  "eventsHeld": "luring",
+  "eventCategory": "Tech Webinar",
+  "eventsDate": "2023-12-01",
+  "registrationDate": "2023-11-01",
+  "eventsTheme": "IoT Series",
+  "registrationFee": 100.00,
+  "capacityTotal": 2
+}
+
+### ViewAllAcademicEvents
+GET http://192.168.1.125:3000/viewAllAcademicEvents
+
+### ViewAcademicEventsByJenjang
+GET http://192.168.1.125:3000/viewAcademicEventsByJenjang/Umum
+
+### ViewAcademicEventsByHeld
+GET http://192.168.1.125:3000/viewAcademicEventsByHeld/luring
+
+### ViewAcademicEventsByJenjangHeld
+GET http://192.168.1.125:3000/viewAcademicEventsByJenjangHeld/Umum/luring
+
+### JoinCompetition
+POST http://192.168.1.125:3000/joinCompetition
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "competitionId": 1
+}
+
+### JoinAcademicEvents
+POST http://192.168.1.125:3000/joinAcademicEvents
+Content-Type: application/json
+
+{
+  "userId": 2,
+   "academicEventsId": 1
+}
+
+### ViewCompetitionApplicants
+POST http://192.168.1.125:3000/viewCompetitionApplicants
+Content-Type: application/json
+
+{
+  "organizerId": 1,
+  "competitionId": 1
+}
+
+### ViewAcademicEventsApplicants
+POST http://192.168.1.125:3000/viewAcademicEventsApplicants
+Content-Type: application/json
+
+{
+  "organizerId": 1,
+  "academicEventsId": 1
+}
+
+### ChooseCompetitionWinnersRanked
+POST http://192.168.1.125:3000/chooseCompetitionWinnersRanked
+Content-Type: application/json
+
+{
+  "organizerId": 1,
+  "competitionId": 1,
+  "winnerInfo": "1,Juara 1"
+}
+
+### ViewCompetitionWinners
+POST http://192.168.1.125:3000/viewCompetitionWinners
+Content-Type: application/json
+
+{
+  "organizerId": 1,
+  "competitionId": 1
+}
+
+### View User Achievement
+POST http://192.168.1.125:3000/viewUserAchievement
+Content-Type: application/json
+
+{
+  "userId": 1
+}

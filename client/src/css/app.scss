@@ -1,0 +1,71 @@
+// app global css in SCSS form
+
+@font-face {
+  font-family: "poppins-r";
+  font-weight: 400;
+  src: url("../../public/fonts/Poppins-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "poppins-md";
+  font-weight: 500;
+  src: url("../../public/fonts/Poppins-Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "poppins-sb";
+  font-weight: 600;
+  src: url("../../public/fonts/Poppins-SemiBold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "poppins-b";
+  font-weight: 700;
+  src: url("../../public/fonts/Poppins-Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "poppins-xb";
+  font-weight: 800;
+  src: url("../../public/fonts/Poppins-ExtraBold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "poppins-bl";
+  font-weight: 900;
+  src: url("../../public/fonts/Poppins-Black.woff") format("woff");
+}
+
+// declare a class which applies it
+.poppins-r {
+  font-family: "poppins-r";
+}
+
+.poppins-md {
+  font-family: "poppins-md";
+}
+
+.poppins-sb {
+  font-family: "poppins-sb";
+}
+
+.poppins-b {
+  font-family: "poppins-b";
+}
+
+.poppins-xb {
+  font-family: "poppins-xb";
+}
+
+.poppins-bl {
+  font-family: "poppins-bl";
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
