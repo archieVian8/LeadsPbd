@@ -4,55 +4,57 @@ import { Sequelize } from "sequelize";
 
 export const createAcademicEvent = async (req, res) => {
     const {
-        idOrganizer,
-        eventsName,
-        eventsLoc,
-        eventsJenjang,
-        eventsHeld,
-        eventCategory,
-        eventsDate,
-        registrationDate,
-        eventsTheme,
-        registrationFee,
-        capacityTotal
+      idOrganizer,
+      eventsName,
+      eventsLoc,
+      eventsJenjang,
+      eventsHeld,
+      eventCategory,
+      eventsDate,
+      registrationDate,
+      eventsTheme,
+      registrationFee,
+      capacityTotal,
+      deskripsiEvent, 
     } = req.body;
-
+  
     try {
-        console.log("createAcademicEvent - called");
-
-        const result = await academicEvents.sequelize.query(
-            'CALL CreateAcademicEvent(:idOrganizer, :eventsName, :eventsLoc, :eventsJenjang, :eventsHeld, :eventCategory, :eventsDate, :registrationDate, :eventsTheme, :registrationFee, :capacityTotal)',
-            {
-                replacements: {
-                    idOrganizer,
-                    eventsName,
-                    eventsLoc,
-                    eventsJenjang,
-                    eventsHeld,
-                    eventCategory,
-                    eventsDate,
-                    registrationDate,
-                    eventsTheme,
-                    registrationFee,
-                    capacityTotal,
-                },
-                type: academicEvents.sequelize.QueryTypes.RAW,
-            }
-        );
-
-        if (result && result[0] && result[0][0] && result[0][0].academicEventId) {
-            const academicEventId = result[0][0].academicEventId;
-            return res.json({ msg: 'Academic Event created successfully', academicEventId });
-        } else {
-            console.error(result);
-            return res.status(500).json({ msg: 'Lihat Terminal' });
+      console.log("createAcademicEvent - called");
+  
+      const result = await academicEvents.sequelize.query(
+        'CALL CreateAcademicEvent(:idOrganizer, :eventsName, :eventsLoc, :eventsJenjang, :eventsHeld, :eventCategory, :eventsDate, :registrationDate, :eventsTheme, :registrationFee, :capacityTotal, :deskripsiEvent)',
+        {
+          replacements: {
+            idOrganizer,
+            eventsName,
+            eventsLoc,
+            eventsJenjang,
+            eventsHeld,
+            eventCategory,
+            eventsDate,
+            registrationDate,
+            eventsTheme,
+            registrationFee,
+            capacityTotal,
+            deskripsiEvent, 
+          },
+          type: academicEvents.sequelize.QueryTypes.RAW,
         }
+      );
+  
+      if (result && result[0] && result[0][0] && result[0][0].academicEventId) {
+        const academicEventId = result[0][0].academicEventId;
+        return res.json({ msg: 'Academic Event created successfully', academicEventId });
+      } else {
+        console.error(result);
+        return res.status(500).json({ msg: 'Lihat Terminal' });
+      }
     } catch (error) {
-        console.error(error);
-        const errorMessage = error.original ? error.original.message : 'Internal Server Error';
-        return res.status(500).json({ msg: errorMessage });
+      console.error(error);
+      const errorMessage = error.original ? error.original.message : 'Internal Server Error';
+      return res.status(500).json({ msg: errorMessage });
     }
-};
+  };
 
 export const viewAllAcademicEvents = async (req, res) => {
     try {

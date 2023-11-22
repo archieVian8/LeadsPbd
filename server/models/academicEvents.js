@@ -67,6 +67,10 @@ const academicEvents = db.define(
       type: DataTypes.ENUM('full', 'available'),
       defaultValue: 'available',
     },
+    deskripsiEvent: {
+      type: DataTypes.STRING(500), 
+      allowNull: false,
+    },
   },
   {
     timestamps: false,

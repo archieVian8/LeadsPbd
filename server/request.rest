@@ -1,3 +1,4 @@
+
 POST http://192.168.1.125:3000/signUpUser
 Content-Type: application/json
 
@@ -21,7 +22,7 @@ Content-Type: application/json
 
 {
   "email": "archievian5@gmail.com",
-  "password": "1234567"
+  "password": "12345678"
 }
 
 ### SignUpEventOrganizer
@@ -90,7 +91,8 @@ Content-Type: application/json
   "registrationDate": "2023-11-01",
   "eventsTheme": "IoT Series",
   "registrationFee": 100.00,
-  "capacityTotal": 2
+  "capacityTotal": 2,
+  "deskripsiEvent": "Deskripsi acara IoT Series"
 }
 
 ### ViewAllAcademicEvents
@@ -119,7 +121,7 @@ POST http://192.168.1.125:3000/joinAcademicEvents
 Content-Type: application/json
 
 {
-  "userId": 2,
+  "userId": 1,
    "academicEventsId": 1
 }
 
