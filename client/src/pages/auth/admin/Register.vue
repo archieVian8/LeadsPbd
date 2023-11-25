@@ -5,14 +5,6 @@
         <q-form @submit="submit()" class="form-container">
           <img src="/images/logo-black.png" alt="Logo">
           <div class="q-mt-lg">
-            <p>Nama Depan</p>
-            <q-input outlined v-model="firstName" :rules="[(val) => !!val || 'Nama Depan wajib diisi']" />
-          </div>
-          <div class="q-mt-xs">
-            <p>Nama Belakang</p>
-            <q-input outlined v-model="lastName" :rules="[(val) => !!val || 'Nama Belakang wajib diisi']" />
-          </div>
-          <div class="q-mt-xs">
             <p>Email</p>
             <q-input outlined v-model="email" :rules="[(val) => !!val, (val) => isValidEmail(val) || 'email tidak valid']" />
           </div>
@@ -42,36 +34,20 @@
             </q-input>
           </div>
           <div class="q-mt-xs">
+            <p>Nama Organizer</p>
+            <q-input outlined v-model="organizerName" :rules="[(val) => !!val || 'SD wajib diisi']" />
+          </div>
+          <div class="q-mt-xs">
+            <p>Institusi Organizer</p>
+            <q-input outlined v-model="organizerInstitution" :rules="[(val) => !!val || 'SMP wajib diisi']" />
+          </div>
+          <div class="q-mt-xs">
+            <p>Alamat Organizer</p>
+            <q-input outlined v-model="organizerAddress" :rules="[(val) => !!val || 'SMA wajib diisi']" />
+          </div>
+          <div class="q-mt-xs">
             <p>Nomor Telepon</p>
             <q-input outlined v-model="phoneNumber" :rules="[(val) => !!val || 'Nomor Telepon wajib diisi']" />
-          </div>
-          <div class="q-mt-xs">
-            <p>SD</p>
-            <q-input outlined v-model="elementarySchool" :rules="[(val) => !!val || 'SD wajib diisi']" />
-          </div>
-          <div class="q-mt-xs">
-            <p>SMP</p>
-            <q-input outlined v-model="juniorHighSchool" :rules="[(val) => !!val || 'SMP wajib diisi']" />
-          </div>
-          <div class="q-mt-xs">
-            <p>SMA</p>
-            <q-input outlined v-model="seniorHighSchool" :rules="[(val) => !!val || 'SMA wajib diisi']" />
-          </div>
-          <div class="q-mt-xs">
-            <p>Universitas</p>
-            <q-input outlined v-model="university" :rules="[(val) => !!val || 'Universitas wajib diisi']" />
-          </div>
-          <div class="q-mt-xs">
-            <p>Jenis Kelamin</p>
-            <q-select outlined v-model="gender" :options="genderOptions" />
-          </div>
-          <div class="q-mt-xs">
-            <p>Tentang</p>
-            <q-input outlined v-model="about" :rules="[(val) => !!val || 'Tentang wajib diisi']" />
-          </div>
-          <div class="q-mt-lg">
-            <p>Tanggal Lahir</p>
-            <q-input outlined v-model="birthdate" type="date" :rules="[(val) => !!val || 'Tanggal lahir wajib diisi']" />
           </div>
           <q-btn type="submit" class="q-mt-xl" unelevated color="primary" label="Masuk" no-caps />
         </q-form>
@@ -89,28 +65,19 @@ import { Notify } from 'quasar';
 const EMAIL_REGEX = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 export default {
-  name: 'UserRegister',
+  name: 'OrganizerRegister',
 
   data() {
     return {
-      firstName: ref(null),
-      lastName: ref(null),
       email: ref(null),
       password: ref(null),
       passwordConfirmation: ref(null),
       isPwd: ref(true),
       isPwdConfirm: ref(true),
-      phoneNumber: ref(null),
-      elementarySchool: ref(null),
-      juniorHighSchool: ref(null),
-      seniorHighSchool: ref(null),
-      seniorHighSchool: ref(null),
-      university: ref(null),
-      gender: ref(null),
-      about: ref(null),
-      birthdate: ref(null),
-      gender: ref(null),
-      date: ref(null),
+      organizerName: ref(null),
+      organizerInstitution: ref(null),
+      organizerAddress: ref(null),
+      phoneNumber: ref(null)
     };
   },
 
@@ -125,19 +92,13 @@ export default {
   methods: {
     async submit() {
       try {
-        const response = await api.post('signUpUser', {
-          firstName: this.firstName,
-          lastName: this.lastName,
+        const response = await api.post('signUpEventOrganizer', {
           email: this.email,
           password: this.password,
-          phoneNumber: this.phoneNumber,
-          elementarySchool: this.elementarySchool,
-          juniorHighSchool: this.juniorHighSchool,
-          seniorHighSchool: this.seniorHighSchool,
-          university: this.university,
-          gender: this.gender,
-          about: this.about,
-          birthdate: this.birthdate
+          organizerName: this.organizerName,
+          organizerInstitution: this.organizerInstitution,
+          organizerAddress: this.organizerAddress,
+          phoneNumber: this.phoneNumber
         });
         console.log(response);
         // if (response.status === 200) {
@@ -167,7 +128,7 @@ export default {
   top: 0;
   right: 0;
   height: 100vh;
-  background-image: url("/images/user-auth.jpg");
+  background-image: url("/images/admin-auth.jpg");
   background-repeat: round;
   object-fit: cover;
 }

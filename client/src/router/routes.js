@@ -30,7 +30,8 @@ const routes = [
     path: '/organizer',
     component: () => import('src/layouts/BlankLayout.vue'),
     children: [
-      { path: 'login', name: 'OrganizerLogin', component: () => import('pages/auth/admin/Login.vue') }
+      { path: 'login', name: 'OrganizerLogin', component: () => import('pages/auth/admin/Login.vue') },
+      { path: 'register', name: 'OrganizerRegister', component: () => import('pages/auth/admin/Register.vue') }
     ]
   },
 
