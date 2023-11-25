@@ -8,6 +8,14 @@ const routes = [
     ]
   },
 
+  {
+    path: '/login-as',
+    component: () => import('src/layouts/BlankLayout.vue'),
+    children: [
+      { path: '', name: 'LoginAs', component: () => import('pages/LoginAs.vue') }
+    ]
+  },
+
   // Always leave this as last one,
   // but you can also remove it
   {
