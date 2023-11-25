@@ -16,6 +16,24 @@ const routes = [
     ]
   },
 
+  {
+    path: '/user',
+    component: () => import('src/layouts/BlankLayout.vue'),
+    children: [
+      { path: 'login', name: 'UserLogin', component: () => import('pages/auth/user/Login.vue') }
+    ]
+  },
+
+
+  {
+    path: '/organizer',
+    component: () => import('src/layouts/BlankLayout.vue'),
+    children: [
+      { path: 'login', name: 'OrganizerLogin', component: () => import('pages/auth/admin/Login.vue') }
+    ]
+  },
+
+
   // Always leave this as last one,
   // but you can also remove it
   {
