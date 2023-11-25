@@ -20,7 +20,8 @@ const routes = [
     path: '/user',
     component: () => import('src/layouts/BlankLayout.vue'),
     children: [
-      { path: 'login', name: 'UserLogin', component: () => import('pages/auth/user/Login.vue') }
+      { path: 'login', name: 'UserLogin', component: () => import('pages/auth/user/Login.vue') },
+      { path: 'register', name: 'UserRegister', component: () => import('pages/auth/user/Register.vue') }
     ]
   },
 
