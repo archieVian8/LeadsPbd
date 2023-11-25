@@ -1,42 +1,27 @@
 {
-  "name": "alderone",
+  "name": "client",
   "version": "0.0.1",
-  "description": "Accelerating Disaster Recovery",
-  "productName": "alderOne",
-  "author": "archie2023",
+  "description": "A Platform for Promoting Competition and Academic Event",
+  "productName": "Leads",
+  "author": "Ahmad Faiz Agustianto <107536877+Mifaki@users.noreply.github.com>",
   "private": true,
   "scripts": {
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
+    "axios": "^1.2.1",
     "@quasar/extras": "^1.0.0",
-    "@quasar/icongenie": "^3.1.1",
-    "apexcharts": "^3.37.0",
-    "axios": "^0.21.1",
-    "core-js": "^3.6.5",
     "quasar": "^2.6.0",
-    "to": "^0.2.9",
-    "update": "^0.7.4",
     "vue": "^3.0.0",
-    "vue-router": "^4.0.0",
-    "vue3-apexcharts": "^1.4.4"
+    "vue-router": "^4.0.0"
   },
   "devDependencies": {
-    "@quasar/app-webpack": "^3.0.0"
+    "@quasar/app-vite": "^1.0.0",
+    "autoprefixer": "^10.4.2",
+    "postcss": "^8.4.14"
   },
-  "browserslist": [
-    "last 10 Chrome versions",
-    "last 10 Firefox versions",
-    "last 4 Edge versions",
-    "last 7 Safari versions",
-    "last 8 Android versions",
-    "last 8 ChromeAndroid versions",
-    "last 8 FirefoxAndroid versions",
-    "last 10 iOS versions",
-    "last 5 Opera versions"
-  ],
   "engines": {
-    "node": ">= 12.22.1",
+    "node": "^18 || ^16 || ^14.19",
     "npm": ">= 6.13.4",
     "yarn": ">= 1.21.1"
   }
