@@ -104,10 +104,9 @@ body {
   background-color: white;
 }
 
-p, a {
+p {
   margin: 0;
   padding: 0;
-  color: black;
 }
 
 a.router-link-exact-active {
@@ -116,6 +115,7 @@ a.router-link-exact-active {
 
 a {
   text-decoration: none;
+  color: black
 }
 
 .main-container {
@@ -124,6 +124,10 @@ a {
 
 .text-white {
   color: #fff;
+}
+
+.text-grey {
+  color: #6D7280;
 }
 
 @media only screen and (width <= 1240px) {
