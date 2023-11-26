@@ -38,7 +38,7 @@
               <p class="jakarta-r">Tingkat: <span class="jakarta-b">{{ compe.tingkat }}</span></p>
               <p class="jakarta-r">Kapasitas Tersisa: <span class="jakarta-b">{{ compe.capacityTersisa }}</span></p>
             </div>
-            <q-btn color="primary" icon-right="chevron_right" label="Detail" />
+            <q-btn @click="navigateCompeDetail(compe.idCompetition)" color="primary" icon-right="chevron_right" label="Detail" no-caps />
           </div>
           <div v-if="(!compe || event) && academicData.length > 0" v-for="academic in academicData" :key="academic.idAcademicEvents" class="card q-mt-xl">
             <img src="/images/card-thumbnail.png" :alt="academic.eventsName + ' Thumbnail'">
@@ -136,6 +136,10 @@ export default {
         });
       }
     },
+
+    navigateCompeDetail(id) {
+      this.$router.push(`/competition?compeId=${id}`);
+    }
   },
 
   async mounted() {

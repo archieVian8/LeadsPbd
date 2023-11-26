@@ -35,11 +35,20 @@ const routes = [
   },
 
   {
-    path: "/organizer",
+    path: "/user",
     component: () => import("src/layouts/BlankLayout.vue"),
     children: [
-      { path: "login", name: "OrganizerLogin", component: () => import("pages/auth/admin/Login.vue")},
-      { path: "register", name: "OrganizerRegister", component: () => import("pages/auth/admin/Register.vue")},
+      { path: "login", name: "UserLogin", component: () => import("pages/auth/user/Login.vue")},
+      { path: "register", name: "UserRegister", component: () => import("pages/auth/user/Register.vue")},
+    ],
+  },
+
+
+  {
+    path: "/competition",
+    component: () => import("src/layouts/HeaderFooter.vue"),
+    children: [
+      { path: "", name: "CompetitionDetail", component: () => import("pages/user/CompetitionDetail.vue")},
     ],
   },
 
