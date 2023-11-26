@@ -4,7 +4,7 @@
       <img src="/images/home-banner.jpg" alt="Banner" class="home-banner">
       <div class="main-container">
         <div class="card-container">
-          <img src="/images/add-competition.png" alt="Add Event" class="add-btn q-mt-xl q-pt-xl">
+          <img src="/images/add-competition.png" alt="Add Event" @click="navigateAddCompetition" class="add-btn q-mt-xl q-pt-xl">
           <div v-if="competitionData.length > 0" v-for="compe in competitionData" :key="compe.idCompetition" class="card q-mt-xl">
             <img src="/images/card-thumbnail.png" :alt="compe.competitionName + ' Thumbnail'">
             <div class="text-gap">
@@ -53,33 +53,16 @@ export default {
       }
     },
 
-    async getAcademicData() {
-      try {
-        const response = await api.get('viewAllAcademicEvents')
-        this.academicData = response.data;
-        console.log("academic", this.academicData);
-        // if (response.status === 200) {
-        //   this.$router.push('/home');
-        // }
-      } catch (error) {
-        console.log(error);
-        Notify.create({
-          color: 'red',
-          message: 'Gagal mengambil data acara akademik silakan refresh halaman',
-          position: 'top',
-          timeout: 2500
-        });
-      }
+    navigateAddCompetition() {
+      this.$router.push('/organizer/competition/create');
     },
   },
 
   async mounted() {
     await this.getCompetitionData();
-    await this.getAcademicData();
   }
 }
 </script>
-
 <style scoped>
 
 .add-btn {

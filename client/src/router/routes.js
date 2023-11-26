@@ -52,6 +52,14 @@ const routes = [
     ]
   },
 
+  {
+    path: '/organizer/competition/create',
+    component: () => import('src/layouts/OrganizerHeaderFooter.vue'),
+    children: [
+      { path: '', name: 'AddCompetition', component: () => import('pages/admin/AddCompetition.vue') },
+    ]
+  },
+
 
   // Always leave this as last one,
   // but you can also remove it
