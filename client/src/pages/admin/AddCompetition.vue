@@ -56,11 +56,11 @@
           <div class="col-5">
             <div class="q-mb-lg">
               <p class="jakarta-sb q-mb-xs">Deskripsi</p>
-              <q-input outlined v-model="desc" type="textarea" :rules="[(val) => !!val || 'Kategori wajib diisi']" />
+              <q-input outlined v-model="desc" type="textarea" :rules="[(val) => !!val || 'Deskripsi wajib diisi']" />
             </div>
             <div>
               <p class="jakarta-sb q-mb-xs">Ketentuan</p>
-              <q-input outlined v-model="rules" type="textarea" :rules="[(val) => !!val || 'Kategori wajib diisi']" />
+              <q-input outlined v-model="rules" type="textarea" :rules="[(val) => !!val || 'Ketentuan wajib diisi']" />
             </div>
           </div>
         </q-form>
@@ -130,7 +130,7 @@ export default {
         console.log(error);
         Notify.create({
           color: 'red',
-          message: 'Gagal login silahkan coba kembali',
+          message: 'Gagal menambahkan kompetisi silahkan coba lagi',
           position: 'top',
           timeout: 2500
         });

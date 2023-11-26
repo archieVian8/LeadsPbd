@@ -4,7 +4,7 @@
       <img src="/images/home-banner.jpg" alt="Banner" class="home-banner">
       <div class="main-container">
         <div class="card-container">
-          <img src="/images/add-event.png" alt="Add Competition" class="add-btn q-mt-xl q-pt-xl">
+          <img src="/images/add-event.png" alt="Add Competition" @click="navigateAddEvent()" class="add-btn q-mt-xl q-pt-xl">
           <div v-if="academicData.length > 0" v-for="academic in academicData" :key="academic.idAcademicEvents" class="card q-mt-xl">
             <img src="/images/card-thumbnail.png" :alt="academic.eventsName + ' Thumbnail'">
             <div class="text-gap">
@@ -52,6 +52,10 @@ export default {
           timeout: 2500
         });
       }
+    },
+
+    navigateAddEvent() {
+      this.$router.push('/organizer/event/create');
     },
   },
 
