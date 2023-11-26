@@ -5,28 +5,12 @@
       <div class="main-container">
         <div class="row items-center">
           <q-btn unelevated round color="grey-5" icon="chevron_left" size="sm" />
-          <p class="jakarta-b text-3xl q-ml-lg">Data Peserta</p>
+          <p class="jakarta-b text-3xl q-ml-lg">Data Peserta Events</p>
         </div>
         <p class="text-lg q-mt-xl">Total Peserta: <span class="jakarta-b">{{ rows.length }}</span></p>
         <div class="q-pa-md">
           <q-table class="jakarta-r q-mt-xl" style="height: 400px" flat bordered :rows="rows" :columns="columns" row-key="index"
-            virtual-scroll v-model:pagination="pagination" :rows-per-page-options="[0]">
-            <template v-slot:body-cell-action="props">
-              <div class="q-gutter-x-md row justify-center">
-                <q-btn color="green" @click="showConfirmationChampion(1)" label="Juara" no-caps />
-              </div>
-            </template>
-          </q-table>
-          <q-dialog v-model="showConfirmationDialog">
-            <q-card>
-              <q-card-section>
-                <p>Apakah anda yakin ingin menjadikan user ini menjad juara?</p>
-              </q-card-section>
-              <q-card-actions align="right">
-                <q-btn unelevated label="Jadikan Juara" color="primary" @click="makeWinnerUser(championUser)" no-caps />
-              </q-card-actions>
-            </q-card>
-          </q-dialog>
+            virtual-scroll v-model:pagination="pagination" :rows-per-page-options="[0]" />
         </div>
       </div>
     </q-page>
@@ -39,7 +23,7 @@ import { api } from 'src/boot/axios';
 import { Notify } from 'quasar';
 
 export default {
-  name: 'CompetitionApplicants',
+  name: 'EventApplicants',
 
   data() {
     return {
@@ -80,12 +64,6 @@ export default {
         label: 'No. Telepon',
         field: 'phoneNumber'
       },
-      {
-        name: 'action',
-        align: 'center',
-        label: 'Juara',
-        field: 'action'
-      },
     ]
 
     const rows = ref([])
@@ -103,9 +81,9 @@ export default {
   methods: {
     async getApplicantsData() {
       try {
-        const response = await api.post('viewCompetitionApplicants', {
+        const response = await api.post('viewAcademicEventsApplicants', {
           organizerId: 1,
-          competitionId: this.$route.query.compeId
+          academicEventsId: this.$route.query.eventId
         })
         if (response.data) {
           const data = response.data
@@ -125,39 +103,6 @@ export default {
           position: 'top',
           timeout: 2500
         });
-      }
-    },
-
-    showConfirmationChampion(userId) {
-      this.championUserId = userId
-      this.showConfirmationDialog = true;
-    },
-
-    async makeWinnerUser() {
-      try {
-        const response = await api.post('chooseCompetitionWinnersRanked', {
-          organizerId: 1,
-          competitionId: this.$route.query.compeId,
-          winnerInfo: `${this.rank},Juara ${this.rank}`
-        })
-        console.log(response);
-        Notify.create({
-          color: 'green',
-          message: 'Berhasil menambahkan juara',
-          position: 'top',
-          timeout: 2500
-        });
-        this.rank = this.rank + 1;
-        this.showConfirmationDialog = false;
-      } catch (error) {
-        console.log(error);
-        Notify.create({
-          color: 'red',
-          message: 'Gagal menambahkan juara silahkan coba lagi',
-          position: 'top',
-          timeout: 2500
-        });
-        this.showConfirmationDialog = false;
       }
     }
   },

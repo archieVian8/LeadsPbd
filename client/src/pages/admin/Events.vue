@@ -4,8 +4,10 @@
       <img src="/images/home-banner.jpg" alt="Banner" class="home-banner">
       <div class="main-container">
         <div class="card-container">
-          <img src="/images/add-event.png" alt="Add Competition" @click="navigateAddEvent()" class="add-btn q-mt-xl q-pt-xl">
-          <div v-if="academicData.length > 0" v-for="academic in academicData" :key="academic.idAcademicEvents" class="card q-mt-xl">
+          <img src="/images/add-event.png" alt="Add Competition" @click="navigateAddEvent()"
+            class="add-btn q-mt-xl q-pt-xl">
+          <div v-if="academicData.length > 0" v-for="academic in academicData" :key="academic.idAcademicEvents"
+            class="card q-mt-xl">
             <img src="/images/card-thumbnail.png" :alt="academic.eventsName + ' Thumbnail'">
             <div class="text-gap">
               <p class="jakarta-b text-lg">{{ academic.eventsName }}</p>
@@ -14,7 +16,8 @@
               <p class="jakarta-r">Lokasi: <span class="jakarta-b">{{ academic.eventsHeld }}</span></p>
               <p class="jakarta-r">Kapasitas Tersisa: <span class="jakarta-b">{{ academic.capacityTersisa }}</span></p>
             </div>
-            <q-btn color="primary" icon-right="chevron_right" label="Peserta" no-caps />
+            <q-btn color="primary" @click="navigateToApplicants(academic.idAcademicEvents)" icon-right="chevron_right"
+              label="Peserta" no-caps />
           </div>
         </div>
       </div>
@@ -54,9 +57,13 @@ export default {
       }
     },
 
-    navigateAddEvent() {
+    navigateAddEvent(id) {
       this.$router.push('/organizer/event/create');
     },
+
+    navigateToApplicants(id) {
+      this.$router.push(`/organizer/event/applicants?eventId=${id}`);
+    }
   },
 
   async mounted() {
@@ -66,7 +73,6 @@ export default {
 </script>
 
 <style scoped>
-
 .add-btn {
   width: 264px;
   height: 320px;

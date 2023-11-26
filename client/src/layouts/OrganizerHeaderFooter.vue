@@ -5,7 +5,7 @@
         <img src="/images/logo-black.png" alt="Logo">
         <div class="row items-center gap-md">
           <a href="/organizer/competition" class="jakarta-sb q-mr-xl">Competition</a>
-          <a href="/organizer/events" class="jakarta-sb">Achievement</a>
+          <a href="/organizer/event" class="jakarta-sb">Events</a>
         </div>
         <!-- Not Logged In -->
         <div>
