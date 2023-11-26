@@ -4,37 +4,47 @@
       <img src="/images/detail-banner.jpg" alt="Banner" class="banner">
       <div class="row justify-between q-mt-lg">
         <div class="col-6">
-          <p class="jakarta-b text-3xl">{{ competitionData.competitionName }}</p>
+          <p class="jakarta-b text-3xl">{{ AcadmiAcademicEventData.eventsName }}</p>
           <div class="row items-center q-mt-md">
             <q-icon name="img:/icons/participant.png" size="24px" />
-            <p class="jakarta-sb q-ml-md">Diikuit oleh <span class="jakarta-b">{{ competitionData.capacityTotal -
-              competitionData.capacityTersisa }}</span> Tim</p>
+            <p class="jakarta-sb q-ml-md">Diikuit oleh <span class="jakarta-b">{{ AcadmiAcademicEventData.capacityTotal -
+              AcadmiAcademicEventData.capacityTersisa }}</span> Tim</p>
           </div>
-          <p class="q-mt-md">Kategori: <span class="jakarta-b">{{ competitionData.competitionCategory }}</span></p>
-          <p class="q-mt-md">Tingkat: <span class="jakarta-b">{{ competitionData.tingkat }}</span></p>
-          <p class="q-mt-md">Kapasitas Tersisa: <span class="jakarta-b">{{ competitionData.capacityTersisa }}</span></p>
+          <p class="q-mt-md">Kategori: <span class="jakarta-b">{{ AcadmiAcademicEventData.eventCategory }}</span></p>
+          <p class="q-mt-md">Jenjang: <span class="jakarta-b">{{ AcadmiAcademicEventData.eventsJenjang }}</span></p>
+          <p class="q-mt-md">Tempat Pelaksanaan: <span class="jakarta-b">{{ AcadmiAcademicEventData.eventsHeld }}</span></p>
+          <p class="q-mt-md">Kapasitas Tersisa: <span class="jakarta-b">{{ AcadmiAcademicEventData.capacityTersisa
+          }}</span></p>
         </div>
         <div class="col-5 right-container">
           <div class="row justify-between items-center text-lg">
             <p class="jakarta-r">Buka Pendaftaran</p>
-            <p class="jakarta-b" style="color: red;">{{ competitionData.registrationDate }}</p>
+            <p class="jakarta-b" style="color: red;">{{ AcadmiAcademicEventData.registrationDate }}</p>
           </div>
           <div class="row justify-between items-center text-lg">
             <p class="jakarta-r">Status</p>
-            <p class="jakarta-b" style="color: red;">{{ competitionData.capacityStatus }}</p>
+            <p class="jakarta-b" style="color: red;">{{ AcadmiAcademicEventData.capacityStatus }}</p>
           </div>
         </div>
       </div>
-      <div class="desc-container q-mt-xl">
+      <div class="border-container q-mt-xl">
         <p class="jakarta-b text-lg">Deskripsi</p>
-        <p class="jakarta-r text-md q-mt-md">{{ competitionData.deskripsi }}</p>
+        <p class="jakarta-r text-md q-mt-md">{{ AcadmiAcademicEventData.deskripsiEvent }}</p>
       </div>
-      <div class="requirement-container q-mt-xl">
-        <p class="jakarta-b text-lg">Syarat dan Ketentuan</p>
-        <p class="jakarta-r text-md q-mt-md">{{ competitionData.requirement }}</p>
+      <div class="border-container q-mt-xl">
+        <p class="jakarta-b text-lg">Lokasi</p>
+        <p class="jakarta-r text-md q-mt-md">{{ AcadmiAcademicEventData.eventsLoc }}</p>
+      </div>
+      <div class="border-container q-mt-xl">
+        <p class="jakarta-b text-lg">Waktu dan Tangggal</p>
+        <p class="jakarta-r text-md q-mt-md">{{ AcadmiAcademicEventData.eventsDate }}</p>
+      </div>
+      <div class="border-container q-mt-xl">
+        <p class="jakarta-b text-lg">Kapasitas </p>
+        <p class="jakarta-r text-md q-mt-md">{{ AcadmiAcademicEventData.capacityTotal }}</p>
       </div>
       <q-btn @click="this.$router.push('/home')" outline color="grey-10" label="Kembali" class="q-mt-xl" no-caps />
-      <q-btn @click="joinCompetition()" color="primary" label="Daftar Sekarang" class="q-mt-md" no-caps />
+      <q-btn @click="joinEvent()" color="primary" label="Daftar Sekarang" class="q-mt-md" no-caps />
     </q-page>
   </q-layout>
 </template>
@@ -45,22 +55,22 @@ import { Notify } from 'quasar';
 import { getUserId } from 'src/utils/localStorage';
 
 export default {
-  name: 'CompetitionDetail',
+  name: 'EventDetail',
 
   data() {
     return {
-      competitionData: [],
+      AcadmiAcademicEventData: [],
     }
   },
 
   methods: {
-    async getCompetitionData() {
+    async getAcadmiAcademicEventData() {
       try {
-        const response = await api.post('viewCompetitionById', {
-          competitionId: this.$route.query.compeId
+        const response = await api.post('viewAcademicEventsById', {
+          academicEventsId: this.$route.query.eventId
         })
-        if (response.data.competitionName) {
-          this.competitionData = response.data;
+        if (response.data.eventsName) {
+          this.AcadmiAcademicEventData = response.data;
         } else {
           Notify.create({
             color: 'red',
@@ -80,18 +90,18 @@ export default {
       }
     },
 
-    async joinCompetition() {
+    async joinEvent() {
       const id = getUserId();
       try {
-        const response = await api.post('joinCompetition', {
+        const response = await api.post('joinAcademicEvents', {
           userId: id,
-          competitionId: this.$route.query.compeId
+          academicEventsId: this.$route.query.eventId
         });
         console.log(response);
         if (response.data.status === "Success") {
           Notify.create({
             color: 'green',
-            message: 'Berhasil mengikuti kompetisi',
+            message: 'Berhasil mengikuti Event Akdemik',
             position: 'top',
             timeout: 2500
           });
@@ -108,7 +118,7 @@ export default {
         console.log(error);
         Notify.create({
           color: 'red',
-          message: 'Gagal mengikuti komptisi silahkan coba kembali',
+          message: 'Gagal mengikuti Event Akdemik silahkan coba kembali',
           position: 'top',
           timeout: 2500
         });
@@ -117,7 +127,7 @@ export default {
   },
 
   async mounted() {
-    await this.getCompetitionData();
+    await this.getAcadmiAcademicEventData();
   }
 }
 </script>
@@ -140,21 +150,12 @@ export default {
   background: #FAFAFA;
 }
 
-.desc-container {
+.border-container {
   width: 100%;
   height: fit-content;
   padding: 24px;
   border-radius: 15px;
   border: 1px solid #171717;
-}
-
-.requirement.container {
-  width: 1128px;
-  height: fit-content;
-  padding: 24px;
-  border-radius: 15px;
-  background: #FAFAFA;
-  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.10);
 }
 
 .q-btn {

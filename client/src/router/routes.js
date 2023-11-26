@@ -53,6 +53,15 @@ const routes = [
   },
 
   {
+    path: "/event",
+    component: () => import("src/layouts/HeaderFooter.vue"),
+    children: [
+      { path: "", name: "EVentDetail", component: () => import("pages/user/EventDetail.vue")},
+    ],
+  },
+
+
+  {
     path: "/home",
     component: () => import("src/layouts/HeaderFooter.vue"),
     children: [

@@ -49,7 +49,7 @@
               <p class="jakarta-r">Lokasi: <span class="jakarta-b">{{ academic.eventsHeld }}</span></p>
               <p class="jakarta-r">Kapasitas Tersisa: <span class="jakarta-b">{{ academic.capacityTersisa }}</span></p>
             </div>
-            <q-btn color="primary" icon-right="chevron_right" label="Detail" no-caps />
+            <q-btn @click="navigateEventDetail(academic.idAcademicEvents)" color="primary" icon-right="chevron_right" label="Detail" no-caps />
           </div>
         </div>
       </div>
@@ -139,6 +139,10 @@ export default {
 
     navigateCompeDetail(id) {
       this.$router.push(`/competition?compeId=${id}`);
+    },
+
+    navigateEventDetail(id) {
+      this.$router.push(`/event?eventId=${id}`);
     }
   },
 
