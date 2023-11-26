@@ -94,3 +94,23 @@ export const signInUser = async (req, res) => {
         return res.status(500).json({ msg: "Connection Lost" });
     }
 };
+
+export const viewProfileById = async (req, res) => {
+    try {
+        const { userId } = req.body;
+
+        const result = await db.query('CALL ViewProfileById(:p_userId)', {
+            replacements: { p_userId: userId },
+            type: db.QueryTypes.RAW,
+        });
+
+        if (result && result[0] && result[0][0]) {
+            res.json(result[0][0]);
+        } else {
+            res.json(result);
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: 'Internal Server Error' });
+    }
+};
