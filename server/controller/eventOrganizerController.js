@@ -90,3 +90,23 @@ export const signInEventOrganizer = async (req, res) => {
       return res.status(500).json({ msg: "Connection Lost" });
   }
 };
+
+export const viewProfileEventOrganizerById = async (req, res) => {
+    try {
+        const { organizerId } = req.body;
+
+        const result = await db.query('CALL ViewProfileEventOrganizerById(:p_organizerId)', {
+            replacements: { p_organizerId: organizerId },
+            type: db.QueryTypes.RAW,
+        });
+
+        if (result && result[0] && result[0][0]) {
+            res.json(result[0][0]);
+        } else {
+            res.json(result);
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: 'Internal Server Error' });
+    }
+};

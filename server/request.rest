@@ -191,5 +191,13 @@ POST http://192.168.1.175:3000/viewProfileById
 Content-Type: application/json
 
 {
-  "userId": 123
+  "userId": 1
+}
+
+### viewProfileEventOrganizerById
+POST http://192.168.1.175:3000/viewProfileEventOrganizerById
+Content-Type: application/json
+
+{
+  "organizerId": 1
 }

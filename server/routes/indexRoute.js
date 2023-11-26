@@ -1,6 +1,6 @@
 import express from "express";
 import { signUpUser, signInUser, viewProfileById } from "../controller/userController.js";
-import { signUpEventOrganizer, signInEventOrganizer } from "../controller/eventOrganizerController.js";
+import { signUpEventOrganizer, signInEventOrganizer, viewProfileEventOrganizerById } from "../controller/eventOrganizerController.js";
 import { createCompetition, viewAllCompetitions, viewCompetitionsByJenjang, viewCompetitionsByTingkat, viewCompetitionsByTingkatJenjang, joinCompetition, viewCompetitionApplicants, viewCompetitionById } from "../controller/competitionController.js";
 import { createAcademicEvent, viewAllAcademicEvents, viewAcademicEventsByJenjang, viewAcademicEventsByHeld, viewAcademicEventsByJenjangHeld, joinAcademicEvents, viewAcademicEventsApplicants, viewAcademicEventsById } from "../controller/academicEventsController.js";
 import { chooseCompetitionWinnersRanked, viewCompetitionWinners } from "../controller/winnersController.js";
@@ -13,6 +13,7 @@ router.post('/viewProfileById', viewProfileById);
 
 router.post('/signUpEventOrganizer', signUpEventOrganizer);
 router.post('/signInEventOrganizer', signInEventOrganizer);
+router.post('/viewProfileEventOrganizerById', viewProfileEventOrganizerById);
 
 router.post('/createCompetition', createCompetition);
 router.get('/viewAllCompetitions', viewAllCompetitions);
