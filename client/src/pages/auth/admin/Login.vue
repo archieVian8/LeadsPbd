@@ -22,6 +22,7 @@
             </q-input>
           </div>
           <q-btn type="submit" class="q-mt-xl" unelevated color="primary" label="Masuk" no-caps />
+          <p class="jakarta-r q-mt-xl text-center">Belum punya akun? <a href="/organizer/register" class="jakarta-b">Daftar</a></p>
         </q-form>
       </div>
       <div class="col-5 auth-image"></div>
@@ -33,6 +34,7 @@
 import { ref } from 'vue';
 import { api } from 'src/boot/axios';
 import { Notify } from 'quasar';
+import { setIsLoggedIn } from 'src/utils/localStorage';
 
 export default {
   name: 'OrganizerLogin',
@@ -59,10 +61,16 @@ export default {
           email: this.email,
           password: this.password
         });
-        console.log(response);
-        // if (response.status === 200) {
-        //   this.$router.push('/home');
-        // }
+        if (response.status === 200) {
+          setIsLoggedIn(true);
+          Notify.create({
+            color: 'green',
+            message: 'Berhasil login',
+            position: 'top',
+            timeout: 2500
+          });
+          this.$router.push('/home');
+        }
       } catch (error) {
         console.log(error);
         this.resetDefault();

@@ -1,13 +1,13 @@
 <template>
   <q-layout view="hHh lpR fF2">
     <q-page class="login-as-container">
-      <p class="jakarta-b text-4xl text-white">Pilih Untuk Masuk Sebagai</p>
+      <p class="jakarta-b text-4xl text-white">Pilih Untuk Daftar Sebagai</p>
       <div class="row items-center q-mt-xl">
-        <div class="role-container q-mr-xl" @click="navigateUserLogin">
+        <div class="role-container q-mr-xl" @click="navigateUserRegister">
           <q-icon name="img:/icons/user-icon.png" size="120px" />
           <p class="jakarta-sb text-lg">Peserta</p>
         </div>
-        <div class="role-container q-ml-xl" @click="navigateAdminLogin">
+        <div class="role-container q-ml-xl" @click="navigateAdminRegister()">
           <q-icon name="img:/icons/admin-icon.png" size="120px" />
           <p class="jakarta-sb text-lg">Penyelenggara</p>
         </div>
@@ -18,14 +18,14 @@
 
 <script>
 export default {
-  name: 'LoginAs',
+  name: 'RegisterAs',
   methods: {
-    navigateUserLogin() {
-      this.$router.push('/user/login');
+    navigateUserRegister() {
+      this.$router.push('/user/register');
     },
 
-    navigateAdminLogin() {
-      this.$router.push('/organizer/login');
+    navigateAdminRegister() {
+      this.$router.push('/organizer/register');
     }
   }
 }

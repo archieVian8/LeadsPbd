@@ -6,7 +6,8 @@
           <img src="/images/logo-black.png" alt="Logo">
           <div class="q-mt-lg">
             <p>Email</p>
-            <q-input outlined v-model="email" :rules="[(val) => !!val, (val) => isValidEmail(val) || 'email tidak valid']" />
+            <q-input outlined v-model="email"
+              :rules="[(val) => !!val, (val) => isValidEmail(val) || 'email tidak valid']" />
           </div>
           <div class="q-mt-xs">
             <p>Password</p>
@@ -23,7 +24,8 @@
           </div>
           <div class="q-mt-xs">
             <p>Konfirmasi Kata Sandi</p>
-            <q-input class="q-mt-sm" outlined v-model="passwordConfirmation" :type="isPwdConfirm ? 'password' : 'text'" :rules="[
+            <q-input class="q-mt-sm" outlined v-model="passwordConfirmation" :type="isPwdConfirm ? 'password' : 'text'"
+              :rules="[
                 (val) => !!val,
                 (val) => val === password || 'Konfirmasi tidak sama '
               ]">
@@ -50,6 +52,8 @@
             <q-input outlined v-model="phoneNumber" :rules="[(val) => !!val || 'Nomor Telepon wajib diisi']" />
           </div>
           <q-btn type="submit" class="q-mt-xl" unelevated color="primary" label="Masuk" no-caps />
+          <p class="jakarta-r q-mt-xl text-center">Sudah punya akun? <a href="/organizer/login"
+              class="jakarta-b">Masuk</a></p>
         </q-form>
       </div>
       <div class="col-5 auth-image"></div>
@@ -100,18 +104,23 @@ export default {
           organizerAddress: this.organizerAddress,
           phoneNumber: this.phoneNumber
         });
-        console.log(response);
-        // if (response.status === 200) {
-        //   this.$router.push('/home');
-        // }
       } catch (error) {
-        console.log(error);
-        Notify.create({
-          color: 'red',
-          message: 'Gagal login silahkan coba kembali',
-          position: 'top',
-          timeout: 2500
-        });
+        if (error.response.data.msg === "Sukses") {
+          Notify.create({
+            color: 'green',
+            message: 'Berhasil register',
+            position: 'top',
+            timeout: 2500
+          });
+          this.$router.push('/organizer/login');
+        } else {
+          Notify.create({
+            color: 'red',
+            message: `${error.response.data.msg}`,
+            position: 'top',
+            timeout: 2500
+          });
+        }
       }
     },
 
@@ -145,5 +154,4 @@ export default {
 .q-btn {
   width: 100%;
   height: 42px;
-}
-</style>
+}</style>

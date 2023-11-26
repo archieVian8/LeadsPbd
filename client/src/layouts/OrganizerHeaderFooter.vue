@@ -7,17 +7,11 @@
           <a href="/organizer/competition" class="jakarta-sb q-mr-xl">Competition</a>
           <a href="/organizer/event" class="jakarta-sb">Events</a>
         </div>
-        <!-- Not Logged In -->
-        <div>
-          <q-btn unelevated color="primary" label="Sign In" no-caps class="q-mr-lg" />
-          <q-btn outline color="grey-10" label="Masuk" no-caps />
-        </div>
-        <!-- Logged In -->
-        <!-- <div class="row items-center">
+        <div class="row items-center">
           <img src="/images/user-header.png" alt="Avatar">
           <p class="jakarta-b q-mx-lg">Budi</p>
           <q-icon name="img:/icons/logout.png" size="24px" />
-        </div> -->
+        </div>
       </div>
     </q-header>
     <q-page-container>

@@ -7,17 +7,17 @@
           <a href="/home" class="jakarta-sb q-mr-xl">Home</a>
           <a href="/achivement" class="jakarta-sb">Achievement</a>
         </div>
-        <!-- Not Logged In -->
-        <div>
-          <q-btn unelevated color="primary" label="Sign In" no-caps class="q-mr-lg" />
-          <q-btn outline color="grey-10" label="Masuk" no-caps />
-        </div>
         <!-- Logged In -->
-        <!-- <div class="row items-center">
+        <div v-if="isLogin" class="row items-center">
           <img src="/images/user-header.png" alt="Avatar">
           <p class="jakarta-b q-mx-lg">Budi</p>
           <q-icon name="img:/icons/logout.png" size="24px" />
-        </div> -->
+        </div>
+        <!-- Not Logged In -->
+        <div v-else>
+          <q-btn @click="navigateLogin()" unelevated color="primary" label="Sign In" no-caps class="q-mr-lg" />
+          <q-btn @click="navigateRegister()" outline color="grey-10" label="Masuk" no-caps />
+        </div>
       </div>
     </q-header>
     <q-page-container>
@@ -39,6 +39,31 @@
 </template>
 
 <script>
+import { getIsLoggedIn } from 'src/utils/localStorage';
+import { ref } from 'vue';
+
+export default {
+
+  data() {
+    return {
+      isLogin: ref(null)
+    }
+  },
+
+  methods: {
+    navigateLogin() {
+      this.$router.push('/login-as');
+    },
+
+    navigateRegister() {
+      this.$router.push('/register-as');
+    }
+  },
+
+  mounted() {
+    this.isLogin = getIsLoggedIn();
+  }
+}
 </script>
 
 <style scoped>
@@ -47,6 +72,7 @@
   height: 100px;
   max-height: 100px;
   background-color: white;
+  color: black;
 }
 
 .footer {
