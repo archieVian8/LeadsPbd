@@ -14,7 +14,7 @@
               <p class="jakarta-r">Tingkat: <span class="jakarta-b">{{ compe.tingkat }}</span></p>
               <p class="jakarta-r">Kapasitas Tersisa: <span class="jakarta-b">{{ compe.capacityTersisa }}</span></p>
             </div>
-            <q-btn color="primary" icon-right="chevron_right" label="Detail" />
+            <q-btn color="primary" @click="navigateToApplicants(compe.idCompetition)" icon-right="chevron_right" label="Peserta" />
           </div>
         </div>
       </div>
@@ -56,6 +56,10 @@ export default {
     navigateAddCompetition() {
       this.$router.push('/organizer/competition/create');
     },
+
+    navigateToApplicants(id){
+      this.$router.push(`/organizer/competition/applicants?compeId=${id}`);
+    }
   },
 
   async mounted() {

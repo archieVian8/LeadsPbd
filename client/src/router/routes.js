@@ -53,10 +53,11 @@ const routes = [
   },
 
   {
-    path: '/organizer/competition/create',
+    path: '/organizer/competition',
     component: () => import('src/layouts/OrganizerHeaderFooter.vue'),
     children: [
-      { path: '', name: 'AddCompetition', component: () => import('pages/admin/AddCompetition.vue') },
+      { path: 'create', name: 'AddCompetition', component: () => import('pages/admin/AddCompetition.vue') },
+      { path: 'applicants', name: 'CompetitionApplicants', component: () => import('pages/admin/CompetitionApplicants.vue') },
     ]
   },
 
