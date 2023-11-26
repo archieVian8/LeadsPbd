@@ -10,7 +10,7 @@
         <!-- Logged In -->
         <div v-if="isLogin" class="row items-center">
           <img src="/images/user-header.png" alt="Avatar">
-          <p class="jakarta-b q-mx-lg">Budi</p>
+          <p class="jakarta-b q-mx-lg">{{  name }}</p>
           <q-icon name="img:/icons/logout.png" size="24px" />
         </div>
         <!-- Not Logged In -->
@@ -39,14 +39,17 @@
 </template>
 
 <script>
-import { getIsLoggedIn } from 'src/utils/localStorage';
+import { Notify } from 'quasar';
+import { api } from 'src/boot/axios';
+import { getIsLoggedIn, getUserId } from 'src/utils/localStorage';
 import { ref } from 'vue';
 
 export default {
 
   data() {
     return {
-      isLogin: ref(null)
+      isLogin: ref(null),
+      name: ref(null)
     }
   },
 
@@ -57,11 +60,35 @@ export default {
 
     navigateRegister() {
       this.$router.push('/register-as');
+    },
+
+    async getuserById() {
+      try {
+        const id = getUserId();
+        const resp = await api.post('viewProfileById', {
+          userId: id
+        });
+        if (resp.data.length > 0) {
+          this.name = resp.data[0].firstName;
+        } else {
+          Notify.create({
+            color: 'red',
+            message: 'Gagal menagmbil data pengguna silahkan refresh halaman',
+            position: 'top',
+            timeout: 2500
+          });
+        }
+        console.log(resp);
+      } catch (err) {
+        console.error(err)
+      }
     }
+
   },
 
   mounted() {
     this.isLogin = getIsLoggedIn();
+    this.getuserById(getUserId());
   }
 }
 </script>
