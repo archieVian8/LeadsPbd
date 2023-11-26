@@ -53,7 +53,7 @@ try {
     console.log( error);
 }
 
-app.use(cors({Credential:true, origin:'http://192.168.43.91:8080'})); //ganti
+app.use(cors({Credential:true, origin:'http://192.168.1.175:8080'})); //ganti
 app.use(express.json());
 app.use(router);
 // app.use('/', indexRouter);

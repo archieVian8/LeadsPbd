@@ -47,7 +47,7 @@ export const createAcademicEvent = async (req, res) => {
         return res.json({ msg: 'Academic Event created successfully', academicEventId });
       } else {
         console.error(result);
-        return res.status(500).json({ msg: 'Lihat Terminal' });
+        return res.status(500).json({ msg: 'Academic Event created successfully' });
       }
     } catch (error) {
       console.error(error);
@@ -138,64 +138,28 @@ export const viewAcademicEventsByJenjangHeld = async (req, res) => {
 };
 
 export const joinAcademicEvents = async (req, res) => {
-    try {
+  try {
       console.log("joinAcademicEvents - called");
       const { userId, academicEventsId } = req.body;
-  
-      const [
-        { v_capacityTersisa, v_capacityStatus, v_userParticipationCount },
-      ] = await db.query(
-        'CALL JoinAcademicEvents(:p_userId, :p_academicEventsId)',
-        {
+
+      const [result] = await db.query('CALL JoinAcademicEvents(:p_userId, :p_academicEventsId)', {
           replacements: { p_userId: userId, p_academicEventsId: academicEventsId },
           type: db.QueryTypes.RAW,
-        }
-      );
-  
-      if (v_userParticipationCount === 0) {
-        if (v_capacityTersisa > 0) {
-          await db.query(
-            'INSERT INTO leadsTwo.userJoinAcademicEvents (idUser, idAcademicEvents) VALUES (:p_userId, :p_academicEventsId)',
-            {
-              replacements: { p_userId: userId, p_academicEventsId: academicEventsId },
-              type: db.QueryTypes.RAW,
-            }
-          );
-  
-          await db.query(
-            'UPDATE leadsTwo.academicEvents SET capacityTersisa = capacityTersisa - 1 WHERE idAcademicEvents = :p_academicEventsId',
-            {
-              replacements: { p_academicEventsId: academicEventsId },
-              type: db.QueryTypes.RAW,
-            }
-          );
-  
-          if (v_capacityTersisa - 1 === 0) {
-            await db.query(
-              'UPDATE leadsTwo.academicEvents SET capacityStatus = "full" WHERE idAcademicEvents = :p_academicEventsId',
-              {
-                replacements: { p_academicEventsId: academicEventsId },
-                type: db.QueryTypes.RAW,
-              }
-            );
-          }
-  
-          console.log({ status: 'Success' });
-          return res.json({ status: 'Success' });
-        } else {
-          console.log({ status: 'Kapasitas Penuh' });
-          return res.json({ status: 'Kapasitas Penuh' });
-        }
+      });
+
+      if (result && 'Status' in result) {
+          console.log(result.Status);
+          return res.json({ status: result.Status });
       } else {
-        console.log({ status: 'JoinAcademicEvents Success' });
-        return res.json({ status: 'JoinAcademicEvents Success' });
+          console.log("Empty result");
+          return res.json({ msg: 'Empty result' });
       }
-    } catch (error) {
+  } catch (error) {
       console.error(error);
       const errorMessage = error.original ? error.original.message : 'Internal Server Error';
       return res.status(500).json({ msg: errorMessage });
-    }
-  };
+  }
+};
 
 export const viewAcademicEventsApplicants = async (req, res) => {
     try {
@@ -221,4 +185,24 @@ export const viewAcademicEventsApplicants = async (req, res) => {
         const errorMessage = error.original ? error.original.message : 'Internal Server Error';
         return res.status(500).json({ msg: errorMessage });
     }
+};
+
+export const viewAcademicEventsById = async (req, res) => {
+    try {
+        console.log("ViewAcademicEventsById - Called");
+        const { academicEventsId } = req.body;
+
+        const [result] = await db.query('CALL ViewAcademicEventsById(:p_academicEventsId)', {
+            replacements: { p_academicEventsId: academicEventsId },
+            type: db.QueryTypes.RAW,
+        });
+        
+        console.log(result);
+        res.json(result);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ msg: 'Internal Server Error' });
+    }
+    
 };

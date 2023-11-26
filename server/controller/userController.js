@@ -71,33 +71,26 @@ export const signInUser = async (req, res) => {
     try {
         console.log("signInUser - called");
 
-        const result = await user.sequelize.query(
-            'CALL SignInUser(:email, :password)',
+        const [result] = await user.sequelize.query(
+            'CALL SignInUser(:p_email, :p_password)',
             {
-                replacements: {
-                    email,
-                    password,
-                },
+                replacements: { p_email: email, p_password: password },
                 type: user.sequelize.QueryTypes.RAW,
             }
         );
 
-        if (result && result[0] && result[0][0] && result[0][0].status) {
-            const status = result[0][0].status;
+        console.log("Result from SignInUser stored procedure:", result);
 
-            if (status === 'Success') {
-                return res.json({ msg: 'Sign in success' });
-            } else {
-                console.error(result);
-                return res.status(401).json({ msg: 'Invalid email or password' });
-            }
+        if (result && 'status' in result && 'idUser' in result) {
+            console.log(result.status);
+
+            return res.status(200).json(result);
         } else {
-            console.error(result);
-            return res.status(500).json({ msg: 'Lihat Pada Terminal' });
+            console.log("Unexpected result from SignInUser stored procedure");
+            return res.status(500).json({ msg: "Internal Server Error" });
         }
     } catch (error) {
-        console.error(error);
-        const errorMessage = error.original ? error.original.message : 'Internal Server Error';
-        return res.status(500).json({ msg: errorMessage });
+        console.error("Error in signInUser:", error);
+        return res.status(500).json({ msg: "Connection Lost" });
     }
 };

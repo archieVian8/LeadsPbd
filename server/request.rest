@@ -1,5 +1,5 @@
-
-POST http://192.168.1.125:3000/signUpUser
+###
+POST http://192.168.1.175:3000/signUpUser
 Content-Type: application/json
 
 {
@@ -17,7 +17,7 @@ Content-Type: application/json
     "birthdate": "2003-12-27"
 }
 ### SignInUser
-POST http://192.168.1.125:3000/signInUser
+POST http://192.168.1.175:3000/signInUser
 Content-Type: application/json
 
 {
@@ -26,7 +26,7 @@ Content-Type: application/json
 }
 
 ### SignUpEventOrganizer
-POST http://192.168.1.125:3000/signUpEventOrganizer
+POST http://192.168.1.175:3000/signUpEventOrganizer
 Content-Type: application/json
 
 {
@@ -38,8 +38,8 @@ Content-Type: application/json
   "phoneNumber": "081265897999"
 }
 
-### Sign In Event Organizer
-POST http://192.168.1.125:3000/signInEventOrganizer
+### SignInEventOrganizer
+POST http://192.168.1.175:3000/signInEventOrganizer
 Content-Type: application/json
 
 {
@@ -48,7 +48,7 @@ Content-Type: application/json
 }
 
 ### CreateCompetition
-POST http://192.168.1.125:3000/createCompetition
+POST http://192.168.1.175:3000/createCompetition
 Content-Type: application/json
 
 {
@@ -65,19 +65,19 @@ Content-Type: application/json
 }
 
 ### ViewAllCompetitions
-GET http://192.168.1.125:3000/viewAllCompetitions
+GET http://192.168.1.175:3000/viewAllCompetitions
 
 ### ViewCompetitionsByJenjang
-GET http://192.168.1.125:3000/viewCompetitionsByJenjang/Umum
+GET http://192.168.1.175:3000/viewCompetitionsByJenjang/Umum
 
 ### ViewCompetitionsByTingkat
-GET http://192.168.1.125:3000/viewCompetitionsByTingkat/Nasional
+GET http://192.168.1.175:3000/viewCompetitionsByTingkat/Nasional
 
 ### ViewCompetitionsByTingkatJenjang
-GET http://192.168.1.125:3000/viewCompetitionsByTingkatJenjang/Nasional/Sekolah%20Dasar
+GET http://192.168.1.175:3000/viewCompetitionsByTingkatJenjang/Nasional/Umum
 
 ### CreateAcademicEvent
-POST http://192.168.1.125:3000/createAcademicEvent
+POST http://192.168.1.175:3000/createAcademicEvent
 Content-Type: application/json
 
 {
@@ -96,19 +96,19 @@ Content-Type: application/json
 }
 
 ### ViewAllAcademicEvents
-GET http://192.168.1.125:3000/viewAllAcademicEvents
+GET http://192.168.1.175:3000/viewAllAcademicEvents
 
 ### ViewAcademicEventsByJenjang
-GET http://192.168.1.125:3000/viewAcademicEventsByJenjang/Umum
+GET http://192.168.1.175:3000/viewAcademicEventsByJenjang/Umum
 
 ### ViewAcademicEventsByHeld
-GET http://192.168.1.125:3000/viewAcademicEventsByHeld/luring
+GET http://192.168.1.175:3000/viewAcademicEventsByHeld/luring
 
 ### ViewAcademicEventsByJenjangHeld
-GET http://192.168.1.125:3000/viewAcademicEventsByJenjangHeld/Umum/luring
+GET http://192.168.1.175:3000/viewAcademicEventsByJenjangHeld/Umum/luring
 
 ### JoinCompetition
-POST http://192.168.1.125:3000/joinCompetition
+POST http://192.168.1.175:3000/joinCompetition
 Content-Type: application/json
 
 {
@@ -117,16 +117,16 @@ Content-Type: application/json
 }
 
 ### JoinAcademicEvents
-POST http://192.168.1.125:3000/joinAcademicEvents
+POST http://192.168.1.175:3000/joinAcademicEvents
 Content-Type: application/json
 
 {
   "userId": 1,
-   "academicEventsId": 1
+   "academicEventsId":5 
 }
 
 ### ViewCompetitionApplicants
-POST http://192.168.1.125:3000/viewCompetitionApplicants
+POST http://192.168.1.175:3000/viewCompetitionApplicants
 Content-Type: application/json
 
 {
@@ -135,7 +135,7 @@ Content-Type: application/json
 }
 
 ### ViewAcademicEventsApplicants
-POST http://192.168.1.125:3000/viewAcademicEventsApplicants
+POST http://192.168.1.175:3000/viewAcademicEventsApplicants
 Content-Type: application/json
 
 {
@@ -144,7 +144,7 @@ Content-Type: application/json
 }
 
 ### ChooseCompetitionWinnersRanked
-POST http://192.168.1.125:3000/chooseCompetitionWinnersRanked
+POST http://192.168.1.175:3000/chooseCompetitionWinnersRanked
 Content-Type: application/json
 
 {
@@ -154,7 +154,7 @@ Content-Type: application/json
 }
 
 ### ViewCompetitionWinners
-POST http://192.168.1.125:3000/viewCompetitionWinners
+POST http://192.168.1.175:3000/viewCompetitionWinners
 Content-Type: application/json
 
 {
@@ -163,9 +163,25 @@ Content-Type: application/json
 }
 
 ### View User Achievement
-POST http://192.168.1.125:3000/viewUserAchievement
+POST http://192.168.1.175:3000/viewUserAchievement
 Content-Type: application/json
 
 {
   "userId": 1
+}
+
+### ViewCompetitionById
+POST http://192.168.1.175:3000/viewCompetitionById
+Content-Type: application/json
+
+{
+  "competitionId": 1
+}
+
+### ViewAcademicEventsById
+POST http://192.168.1.175:3000/viewAcademicEventsById
+Content-Type: application/json
+
+{
+    "academicEventsId": 1
 }

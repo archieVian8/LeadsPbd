@@ -59,38 +59,34 @@ export const signUpEventOrganizer = async (req, res) => {
 };
 
 export const signInEventOrganizer = async (req, res) => {
-    const { email, password } = req.body;
-  
-    try {
-      console.log('signInEventOrganizer - called');
-  
-      const result = await eventOrganizer.sequelize.query(
-        'CALL SignInEventOrganizer(:email, :password)',
-        {
-          replacements: {
-            email,
-            password,
-          },
-          type: eventOrganizer.sequelize.QueryTypes.RAW,
-        }
+  const { email, password } = req.body;
+
+  try {
+      console.log("signInEventOrganizer - called");
+
+      const [result] = await eventOrganizer.sequelize.query(
+          'CALL SignInEventOrganizer(:p_email, :p_password)',
+          {
+              replacements: { 
+                p_email: email, 
+                p_password: password 
+              },
+              type: eventOrganizer.sequelize.QueryTypes.RAW,
+          }
       );
-  
-      if (result && result[0] && result[0][0] && result[0][0].status) {
-        const status = result[0][0].status;
-  
-        if (status === 'Success') {
-          return res.json({ msg: 'Sign in success' });
-        } else {
-          console.error(result);
-          return res.status(401).json({ msg: 'Invalid email or password' });
-        }
+
+      console.log("Result from signInEventOrganizer stored procedure:", result);
+
+      if (result && 'status' in result && 'idOrganizer' in result) {
+          console.log(result.status);
+
+          return res.status(200).json(result);
       } else {
-        console.error(result);
-        return res.status(500).json({ msg: 'Lihat Pada Terminal' });
+          console.log("Unexpected result from signInEventOrganizer stored procedure");
+          return res.status(500).json({ msg: "Internal Server Error" });
       }
-    } catch (error) {
-      console.error(error);
-      const errorMessage = error.original ? error.original.message : 'Internal Server Error';
-      return res.status(500).json({ msg: errorMessage });
-    }
-  };
+  } catch (error) {
+      console.error("Error in signInEventOrganizer:", error);
+      return res.status(500).json({ msg: "Connection Lost" });
+  }
+};

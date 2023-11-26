@@ -24,9 +24,9 @@ export const chooseCompetitionWinnersRanked = async (req, res) => {
 
         console.log('Result:', result);
 
-        if (result && result[0] && result[0].Status) {
-            console.log({ status: result[0].Status });
-            return res.json({ status: result[0].Status });
+        if (result && Object.keys(result).length > 0) {
+            console.log(result);
+            return res.json(result);
         } else {
             console.log('Unexpected result:', result);
             return res.status(500).json({ msg: 'Unexpected result from stored procedure' });
@@ -44,9 +44,7 @@ export const viewCompetitionWinners = async (req, res) => {
         console.log("ViewCompetitionWinners - Called")
         const { organizerId, competitionId } = req.body;
 
-        const [
-            winners,
-        ] = await db.query(
+        const [result] = await db.query(
             'CALL ViewCompetitionWinners(:p_organizerId, :p_competitionId)',
             {
                 replacements: { p_organizerId: organizerId, p_competitionId: competitionId },
@@ -54,11 +52,14 @@ export const viewCompetitionWinners = async (req, res) => {
             }
         );
 
-        if (winners && winners.length > 0) {
-            return res.json({ winners });
-        } else {
+        const winners = result;
+
+        if (winners && Object.keys(winners).length > 0) {
             console.log(winners);
-            return res.json({ msg: 'Winners Competition' });
+            return res.json(winners);
+        } else {
+            console.log("ViewCompetitionWinners - No winners found");
+            return res.json({ msg: 'No winners found' });
         }
     } catch (error) {
         console.error(error);
