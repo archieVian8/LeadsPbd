@@ -9,8 +9,8 @@
         </div>
         <p class="text-lg q-mt-xl">Total Peserta: <span class="jakarta-b">{{ rows.length }}</span></p>
         <div class="q-pa-md">
-          <q-table class="jakarta-r q-mt-xl" style="height: 400px" flat bordered :rows="rows" :columns="columns" row-key="index"
-            virtual-scroll v-model:pagination="pagination" :rows-per-page-options="[0]" />
+          <q-table class="jakarta-r q-mt-xl" style="height: 400px" flat bordered :rows="rows" :columns="columns"
+            row-key="index" virtual-scroll v-model:pagination="pagination" :rows-per-page-options="[0]" />
         </div>
       </div>
     </q-page>
@@ -88,7 +88,15 @@ export default {
           academicEventsId: this.$route.query.eventId
         })
         console.log(response);
-        if (response.data) {
+        if (response.data[0].Status === "Anda tidak memiliki izin untuk melihat pendaftar AcademicEvents") {
+          Notify.create({
+            color: 'red',
+            message: 'Anda tidak memiliki izin untuk melihat pendaftar AcademicEvents',
+            position: 'top',
+            timeout: 2500
+          });
+          this.$router.push('/organizer/event');
+        } else {
           const data = response.data
           this.rows = data.map((applicant, index) => ({
             index: index,
