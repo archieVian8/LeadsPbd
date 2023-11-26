@@ -20,11 +20,13 @@
             <div class="row justify-between q-mt-xs">
               <div class="half-input">
                 <p class="jakarta-sb q-mb-xs">Jenjang</p>
-                <q-select outlined v-model="jenjang" :options="jenjagOptions" :rules="[(val) => !!val || 'Jenjang wajib diisi']" />
+                <q-select outlined v-model="jenjang" :options="jenjagOptions"
+                  :rules="[(val) => !!val || 'Jenjang wajib diisi']" />
               </div>
               <div class="half-input">
                 <p class="jakarta-sb q-mb-xs">Tempat</p>
-                <q-select outlined v-model="place" :options="placeOptions" :rules="[(val) => !!val || 'Tempat wajib diisi']" />
+                <q-select outlined v-model="place" :options="placeOptions"
+                  :rules="[(val) => !!val || 'Tempat wajib diisi']" />
               </div>
             </div>
             <div class="row justify-between q-mt-xs">
@@ -60,8 +62,8 @@
               </div>
             </div>
             <div class="row items-center justify-between q-mt-lg">
-              <q-btn @click="this.$router.push('/organizer/event')" class="btn" outline color="grey-10"
-                label="Kembali" no-caps />
+              <q-btn @click="this.$router.push('/organizer/event')" class="btn" outline color="grey-10" label="Kembali"
+                no-caps />
               <q-btn type="submit" class="btn" unelevated color="primary" label="Tambah Kompetisi" no-caps />
             </div>
           </div>
@@ -129,22 +131,23 @@ export default {
           capacityTotal: this.capacity,
           deskripsiEvent: this.desc
         });
-        console.log(response);
-        Notify.create({
-          color: 'green',
-          message: 'Berhasil menambahkan Event Akademik',
-          position: 'top',
-          timeout: 2500
-        });
-        this.$router.push('/organizer/event');
       } catch (error) {
-        console.log(error);
-        Notify.create({
-          color: 'red',
-          message: 'Gagal menambahkan Event Akademik silahkan coba lagi',
-          position: 'top',
-          timeout: 2500
-        });
+        if (error.response.data.msg === "Academic Event created successfully") {
+          Notify.create({
+            color: 'green',
+            message: 'Berhasil menambahkan event akademik',
+            position: 'top',
+            timeout: 2500
+          });
+          this.$router.push('/organizer/event');
+        } else {
+          Notify.create({
+            color: 'red',
+            message: `${error.response.data.msg}`,
+            position: 'top',
+            timeout: 2500
+          });
+        }
       }
     }
   }

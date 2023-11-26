@@ -118,22 +118,23 @@ export default {
           requirement: this.rules,
           capacityTotal: this.capacity
         });
-        console.log(response);
-        Notify.create({
-          color: 'green',
-          message: 'Berhasil menambahkan kompetisi',
-          position: 'top',
-          timeout: 2500
-        });
-        this.$router.push('/organizer/competition');
       } catch (error) {
-        console.log(error);
-        Notify.create({
-          color: 'red',
-          message: 'Gagal menambahkan kompetisi silahkan coba lagi',
-          position: 'top',
-          timeout: 2500
-        });
+        if (error.response.data.msg === "Competition created successfully") {
+          Notify.create({
+            color: 'green',
+            message: 'Berhasil menambahkan event akademik',
+            position: 'top',
+            timeout: 2500
+          });
+          this.$router.push('/organizer/competition');
+        } else {
+          Notify.create({
+            color: 'red',
+            message: `${error.response.data.msg}`,
+            position: 'top',
+            timeout: 2500
+          });
+        }
       }
     }
   }

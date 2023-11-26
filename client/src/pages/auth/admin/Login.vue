@@ -35,6 +35,7 @@ import { ref } from 'vue';
 import { api } from 'src/boot/axios';
 import { Notify } from 'quasar';
 import { setIsLoggedIn } from 'src/utils/localStorage';
+import { setUserId } from 'src/utils/localStorage';
 
 export default {
   name: 'OrganizerLogin',
@@ -69,7 +70,7 @@ export default {
             position: 'top',
             timeout: 2500
           });
-          this.$router.push('/home');
+          this.$router.push('/organizer/competition');
         }
       } catch (error) {
         console.log(error);
