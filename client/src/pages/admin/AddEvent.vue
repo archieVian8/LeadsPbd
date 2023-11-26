@@ -83,6 +83,7 @@
 import { ref } from 'vue';
 import { api } from 'src/boot/axios';
 import { Notify } from 'quasar';
+import { getUserId } from 'src/utils/localStorage';
 
 export default {
   name: 'AddEvent',
@@ -117,8 +118,9 @@ export default {
   methods: {
     async submit() {
       try {
+        const id = getUserId();
         const response = await api.post('createAcademicEvent', {
-          idOrganizer: 1,
+          idOrganizer: id,
           eventsName: this.name,
           eventsLoc: this.location,
           eventsJenjang: this.jenjang,

@@ -94,10 +94,6 @@ export default {
       try {
         const response = await api.get('viewAllCompetitions')
         this.competitionData = response.data;
-        console.log("compe", this.competitionData);
-        // if (response.status === 200) {
-        //   this.$router.push('/home');
-        // }
       } catch (error) {
         console.log(error);
         Notify.create({
@@ -114,9 +110,6 @@ export default {
         const response = await api.get(`viewCompetitionsByJenjang/${jenjang}`)
         this.competitionData = response.data;
         console.log("compe", this.competitionData);
-        // if (response.status === 200) {
-        //   this.$router.push('/home');
-        // }
       } catch (error) {
         console.log(error);
         Notify.create({
@@ -133,9 +126,6 @@ export default {
         const response = await api.get('viewAllAcademicEvents')
         this.academicData = response.data;
         console.log("academic", this.academicData);
-        // if (response.status === 200) {
-        //   this.$router.push('/home');
-        // }
       } catch (error) {
         console.log(error);
         Notify.create({

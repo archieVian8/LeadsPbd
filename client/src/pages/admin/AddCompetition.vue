@@ -73,6 +73,7 @@
 import { ref } from 'vue';
 import { api } from 'src/boot/axios';
 import { Notify } from 'quasar';
+import { getUserId } from 'src/utils/localStorage';
 
 export default {
   name: 'AddCompetition',
@@ -106,8 +107,9 @@ export default {
   methods: {
     async submit() {
       try {
+        const id = getUserId();
         const response = await api.post('createCompetition', {
-          idOrganizer: 1,
+          idOrganizer: id,
           competitionName: this.name,
           competitionCategory: this.category,
           jenjang: this.jenjang,

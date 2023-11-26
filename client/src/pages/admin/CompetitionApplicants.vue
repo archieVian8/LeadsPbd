@@ -37,6 +37,7 @@
 import { ref } from 'vue';
 import { api } from 'src/boot/axios';
 import { Notify } from 'quasar';
+import { getUserId } from 'src/utils/localStorage';
 
 export default {
   name: 'CompetitionApplicants',
@@ -103,10 +104,12 @@ export default {
   methods: {
     async getApplicantsData() {
       try {
+        const id = getUserId();
         const response = await api.post('viewCompetitionApplicants', {
-          organizerId: 1,
+          organizerId: id,
           competitionId: this.$route.query.compeId
         })
+        console.log(response);
         if (response.data) {
           const data = response.data
           this.rows = data.map((applicant, index) => ({

@@ -22,7 +22,8 @@
             </q-input>
           </div>
           <q-btn type="submit" class="q-mt-xl" unelevated color="primary" label="Masuk" no-caps />
-          <p class="jakarta-r q-mt-xl text-center">Belum punya akun? <a href="/organizer/register" class="jakarta-b">Daftar</a></p>
+          <p class="jakarta-r q-mt-xl text-center">Belum punya akun? <a href="/organizer/register"
+              class="jakarta-b">Daftar</a></p>
         </q-form>
       </div>
       <div class="col-5 auth-image"></div>
@@ -62,7 +63,8 @@ export default {
           email: this.email,
           password: this.password
         });
-        if (response.status === 200) {
+        if (response.data.status === "Success") {
+          setUserId(response.data.idOrganizer)
           setIsLoggedIn(true);
           Notify.create({
             color: 'green',
@@ -71,13 +73,21 @@ export default {
             timeout: 2500
           });
           this.$router.push('/organizer/competition');
+        } else {
+          this.resetDefault();
+          Notify.create({
+            color: 'red',
+            message: `${response.data.status}`,
+            position: 'top',
+            timeout: 2500
+          });
         }
       } catch (error) {
         console.log(error);
         this.resetDefault();
         Notify.create({
           color: 'red',
-          message: 'Gagal login silahkan coba kembali',
+          message: `${error.response.data.msg}`,
           position: 'top',
           timeout: 2500
         });
