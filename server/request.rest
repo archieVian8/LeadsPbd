@@ -122,7 +122,7 @@ Content-Type: application/json
 
 {
   "userId": 1,
-   "academicEventsId":5 
+   "academicEventsId":1 
 }
 
 ### ViewCompetitionApplicants
