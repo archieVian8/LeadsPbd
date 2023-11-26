@@ -4,9 +4,8 @@
       <img src="/images/home-banner.jpg" alt="Banner" class="home-banner">
       <div class="main-container">
         <div class="card-container">
-          <img src="/images/add-event.png" alt="Add Competition" class="add-btn q-mt-xl q-pt-xl">
           <img src="/images/add-competition.png" alt="Add Event" class="add-btn q-mt-xl q-pt-xl">
-          <div v-if="(!event || compe) && competitionData.length > 0" v-for="compe in competitionData" :key="compe.idCompetition" class="card q-mt-xl">
+          <div v-if="competitionData.length > 0" v-for="compe in competitionData" :key="compe.idCompetition" class="card q-mt-xl">
             <img src="/images/card-thumbnail.png" :alt="compe.competitionName + ' Thumbnail'">
             <div class="text-gap">
               <p class="jakarta-b text-lg">{{ compe.competitionName }}</p>
@@ -14,17 +13,6 @@
               <p class="jakarta-r">Jenjang: <span class="jakarta-b">{{ compe.jenjang }}</span></p>
               <p class="jakarta-r">Tingkat: <span class="jakarta-b">{{ compe.tingkat }}</span></p>
               <p class="jakarta-r">Kapasitas Tersisa: <span class="jakarta-b">{{ compe.capacityTersisa }}</span></p>
-            </div>
-            <q-btn color="primary" icon-right="chevron_right" label="Detail" />
-          </div>
-          <div v-if="(!compe || event) && academicData.length > 0" v-for="academic in academicData" :key="academic.idAcademicEvents" class="card q-mt-xl">
-            <img src="/images/card-thumbnail.png" :alt="academic.eventsName + ' Thumbnail'">
-            <div class="text-gap">
-              <p class="jakarta-b text-lg">{{ academic.eventsName }}</p>
-              <p class="jakarta-r">Kategori: <span class="jakarta-b">{{ academic.eventsTheme }}</span></p>
-              <p class="jakarta-r">Jenjang: <span class="jakarta-b">{{ academic.eventsJenjang }}</span></p>
-              <p class="jakarta-r">Lokasi: <span class="jakarta-b">{{ academic.eventsHeld }}</span></p>
-              <p class="jakarta-r">Kapasitas Tersisa: <span class="jakarta-b">{{ academic.capacityTersisa }}</span></p>
             </div>
             <q-btn color="primary" icon-right="chevron_right" label="Detail" />
           </div>
@@ -40,7 +28,7 @@ import { api } from 'src/boot/axios';
 import { Notify } from 'quasar';
 
 export default {
-  name: 'OrganizerrHome',
+  name: 'OrganizerCompetition',
 
   data() {
     return {
@@ -54,10 +42,6 @@ export default {
       try {
         const response = await api.get('viewAllCompetitions')
         this.competitionData = response.data;
-        console.log("compe", this.competitionData);
-        // if (response.status === 200) {
-        //   this.$router.push('/home');
-        // }
       } catch (error) {
         console.log(error);
         Notify.create({

@@ -49,7 +49,7 @@
               <p class="jakarta-r">Lokasi: <span class="jakarta-b">{{ academic.eventsHeld }}</span></p>
               <p class="jakarta-r">Kapasitas Tersisa: <span class="jakarta-b">{{ academic.capacityTersisa }}</span></p>
             </div>
-            <q-btn color="primary" icon-right="chevron_right" label="Detail" />
+            <q-btn color="primary" icon-right="chevron_right" label="Detail" no-caps />
           </div>
         </div>
       </div>

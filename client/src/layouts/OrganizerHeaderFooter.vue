@@ -4,8 +4,8 @@
       <div class="main-container row items-center justify-between">
         <img src="/images/logo-black.png" alt="Logo">
         <div class="row items-center gap-md">
-          <a href="/home" class="jakarta-sb q-mr-xl">Home</a>
-          <a href="/achivement" class="jakarta-sb">Achievement</a>
+          <a href="/organizer/competition" class="jakarta-sb q-mr-xl">Competition</a>
+          <a href="/organizer/events" class="jakarta-sb">Achievement</a>
         </div>
         <!-- Not Logged In -->
         <div>

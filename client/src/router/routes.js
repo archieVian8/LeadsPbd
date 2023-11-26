@@ -44,13 +44,13 @@ const routes = [
   },
 
   {
-    path: '/organizer/home',
-    component: () => import('src/layouts/HeaderFooter.vue'),
+    path: '/organizer',
+    component: () => import('src/layouts/OrganizerHeaderFooter.vue'),
     children: [
-      { path: '', name: 'OrganizerHome', component: () => import('pages/admin/Home.vue') },
+      { path: 'competition', name: 'OrganizerCompetition', component: () => import('pages/admin/Competition.vue') },
+      { path: 'events', name: 'OrganizerEVents', component: () => import('pages/admin/Events.vue') },
     ]
   },
-
 
 
   // Always leave this as last one,
