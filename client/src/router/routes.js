@@ -17,6 +17,14 @@ const routes = [
   },
 
   {
+    path: "/register-as",
+    component: () => import("src/layouts/BlankLayout.vue"),
+    children: [
+      {path: "", name: "RegisterAs", component: () => import("pages/RegisterAs.vue")},
+    ],
+  },
+
+  {
     path: "/user",
     component: () => import("src/layouts/BlankLayout.vue"),
     children: [

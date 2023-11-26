@@ -1,7 +1,7 @@
 <template>
   <q-layout view="hHh lpR fF2">
     <q-page class="row justify-between">
-      <div class="col-6 column jusutify-center items-center">
+      <div class="col-6 column justify-center items-center">
         <q-form @submit="submit()" class="form-container">
           <img src="/images/logo-black.png" alt="Logo">
           <div class="q-mt-lg">
@@ -22,6 +22,7 @@
             </q-input>
           </div>
           <q-btn type="submit" class="q-mt-xl" unelevated color="primary" label="Masuk" no-caps />
+          <p class="jakarta-r q-mt-xl text-center">Belum punya akun? <a href="/user/register" class="jakarta-b">Daftar</a></p>
         </q-form>
       </div>
       <div class="col-5 auth-image"></div>
@@ -33,6 +34,7 @@
 import { ref } from 'vue';
 import { api } from 'src/boot/axios';
 import { Notify } from 'quasar';
+import { setIsLoggedIn } from 'src/utils/localStorage';
 
 export default {
   name: 'UserLogin',
@@ -59,10 +61,16 @@ export default {
           email: this.email,
           password: this.password
         });
-        console.log(response);
-        // if (response.status === 200) {
-        //   this.$router.push('/home');
-        // }
+        if (response.status === 200) {
+          setIsLoggedIn(true);
+          Notify.create({
+            color: 'green',
+            message: 'Berhasil login',
+            position: 'top',
+            timeout: 2500
+          });
+          this.$router.push('/home');
+        }
       } catch (error) {
         console.log(error);
         this.resetDefault();
