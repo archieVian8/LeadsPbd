@@ -1,71 +1,155 @@
-// app global css in SCSS form
+// Font Styles
+@font-face {
+  font-family: "jakarta-l";
+  font-weight: 300;
+  src: url("../../fonts/PlusJakartaSans-Light.woff") format("woff");
+}
 
 @font-face {
-  font-family: "poppins-r";
+  font-family: "jakarta-r";
   font-weight: 400;
-  src: url("../../public/fonts/Poppins-Regular.woff") format("woff");
+  src: url("../../fonts/PlusJakartaSans-Regular.woff") format("woff");
 }
 
 @font-face {
-  font-family: "poppins-md";
-  font-weight: 500;
-  src: url("../../public/fonts/Poppins-Medium.woff") format("woff");
-}
-
-@font-face {
-  font-family: "poppins-sb";
+  font-family: "jakarta-sb";
   font-weight: 600;
-  src: url("../../public/fonts/Poppins-SemiBold.woff") format("woff");
+  src: url("../../fonts/PlusJakartaSans-SemiBold.woff") format("woff");
 }
 
 @font-face {
-  font-family: "poppins-b";
+  font-family: "jakarta-b";
   font-weight: 700;
-  src: url("../../public/fonts/Poppins-Bold.woff") format("woff");
+  src: url("../../fonts/PlusJakartaSans-Bold.woff") format("woff");
 }
 
-@font-face {
-  font-family: "poppins-xb";
-  font-weight: 800;
-  src: url("../../public/fonts/Poppins-ExtraBold.woff") format("woff");
+.jakarta-r {
+  font-family: 'jakarta-r';
 }
 
-@font-face {
-  font-family: "poppins-bl";
-  font-weight: 900;
-  src: url("../../public/fonts/Poppins-Black.woff") format("woff");
+.jakarta-md {
+  font-family: 'jakarta-md';
 }
 
-// declare a class which applies it
-.poppins-r {
-  font-family: "poppins-r";
+.jakarta-sb {
+  font-family: 'jakarta-sb';
 }
 
-.poppins-md {
-  font-family: "poppins-md";
+.jakarta-b {
+  font-family: 'jakarta-b';
 }
 
-.poppins-sb {
-  font-family: "poppins-sb";
+.jakarta-xb {
+  font-family: 'jakarta-xb';
 }
 
-.poppins-b {
-  font-family: "poppins-b";
+.text-xs {
+  font-size: 12px;
 }
 
-.poppins-xb {
-  font-family: "poppins-xb";
+.text-sm {
+  font-size: 14px;
 }
 
-.poppins-bl {
-  font-family: "poppins-bl";
+.text-base {
+  font-size: 16px;
+}
+
+.text-lg {
+  font-size: 18px;
+}
+
+.text-xl {
+  font-size: 20px;
+}
+
+.text-2xl {
+  font-size: 24px;
+}
+
+.text-3xl {
+  font-size: 30px;
+}
+
+.text-4xl {
+  font-size: 36px;
+}
+
+.text-5xl {
+  font-size: 48px;
+}
+
+.text-6xl {
+  font-size: 60px;
+}
+
+.text-7xl {
+  font-size: 72px;
+}
+
+.text-8xl {
+  font-size: 96px;
+}
+
+.text-9xl {
+  font-size: 128px;
+}
+
+// Global Styles
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  background-color: white;
 }
 
 p {
   margin: 0;
+  padding: 0;
+}
+
+a.router-link-exact-active {
+  text-decoration: none;
 }
 
 a {
   text-decoration: none;
-  color: inherit;
+  color: black
+}
+
+.main-container {
+  margin: 64px 156px;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.text-grey {
+  color: #6D7280;
+}
+
+.home-banner {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+@media only screen and (width <= 1240px) {
+  .main-container {
+    margin: 64px 24px;
+  }
+}
+
+@media only screen and (width <= 904px) {
+  .main-container {
+    margin: 48px 32px;
+  }
+}
+
+@media only screen and (width <= 600px) {
+  .main-container {
+    margin: 64px 16px;
+  }
 }

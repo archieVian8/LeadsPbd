@@ -1,11 +1,7 @@
-<!-- /src/layouts/User.vue -->
 <template>
   <q-layout>
-    
-    <!-- this is where the Pages are injected -->
     <q-page-container>
-      <router-view></router-view>
+      <RouterView></RouterView>
     </q-page-container>
-
   </q-layout>
 </template>
