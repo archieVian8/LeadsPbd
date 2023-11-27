@@ -8,8 +8,8 @@
           <a href="/organizer/event" class="jakarta-sb">Events</a>
         </div>
         <div class="row items-center">
-          <img src="/images/user-header.png" alt="Avatar">
-          <p class="jakarta-b q-mx-lg">Budi</p>
+          <q-icon name="img:/icons/compe-icon.png" size="42px" />
+          <p class="jakarta-b q-mx-lg">{{ name }}</p>
           <q-icon name="img:/icons/logout.png" size="24px" />
         </div>
       </div>
@@ -33,6 +33,47 @@
 </template>
 
 <script>
+import { Notify } from 'quasar';
+import { api } from 'src/boot/axios';
+import { getUserId } from 'src/utils/localStorage';
+import { ref } from 'vue';
+
+export default {
+
+  data() {
+    return {
+      name: ref(null)
+    }
+  },
+
+  methods: {
+    async getuserById() {
+      try {
+        const id = getUserId();
+        const resp = await api.post('viewProfileEventOrganizerById', {
+          organizerId: id
+        });
+        if (resp.data.length > 0) {
+          this.name = resp.data[0].organizerName;
+        } else {
+          Notify.create({
+            color: 'red',
+            message: 'Gagal menagmbil data pengguna silahkan refresh halaman',
+            position: 'top',
+            timeout: 2500
+          });
+        }
+        console.log(resp);
+      } catch (err) {
+        console.error(err)
+      }
+    }
+  },
+
+  mounted() {
+    this.getuserById(getUserId());
+  }
+}
 </script>
 
 <style scoped>
@@ -41,6 +82,7 @@
   height: 100px;
   max-height: 100px;
   background-color: white;
+  color: black;
 }
 
 .footer {

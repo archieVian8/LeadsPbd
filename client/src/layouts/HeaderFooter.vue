@@ -89,7 +89,6 @@ export default {
         console.error(err)
       }
     }
-
   },
 
   mounted() {
