@@ -39,13 +39,9 @@
               </div>
             </div>
             <div class="row justify-between q-mt-xs">
-              <div class="half-input">
+              <div class="full-input">
                 <p class="jakarta-sb q-mb-xs">Kapasitas</p>
                 <q-input outlined v-model="capacity" :rules="[(val) => !!val || 'Kapasitas wajib diisi']" />
-              </div>
-              <div class="half-input">
-                <p class="jakarta-sb q-mb-xs">Poster</p>
-                <q-input outlined v-model="thumbnail" type="file" />
               </div>
             </div>
             <div class="row items-center justify-between q-mt-lg">

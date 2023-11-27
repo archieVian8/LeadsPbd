@@ -53,7 +53,7 @@
             <div class="row justify-between items-center q-mt-xl q-pt-lg">
               <div class="feature-item">
                 <q-icon name="img:/icons/feature-3.png" size="64px" />
-                <p class="jakarta-sb text-lg">MReminder</p>
+                <p class="jakarta-sb text-lg">Reminder</p>
                 <p class="jakarta-sb text-grey">
                   Membantu kalian agar tidak melewatkan kesempatan untuk mengikuti kegiatan yang diinginkan.
                 </p>

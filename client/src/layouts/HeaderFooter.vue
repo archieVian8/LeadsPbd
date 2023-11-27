@@ -22,7 +22,7 @@
         <!-- Not Logged In -->
         <div v-else>
           <q-btn @click="navigateLogin()" unelevated color="primary" label="Sign In" no-caps class="q-mr-lg" />
-          <q-btn @click="navigateRegister()" outline color="grey-10" label="Masuk" no-caps />
+          <q-btn @click="navigateRegister()" outline color="grey-10" label="Sign Up" no-caps />
         </div>
       </div>
     </q-header>
@@ -97,7 +97,7 @@ export default {
     logout() {
       localStorage.removeItem('UserId');
       localStorage.removeItem('IsLoggedIn');
-      this.$router.push('/home');
+      this.$router.push('/');
     }
   },
 

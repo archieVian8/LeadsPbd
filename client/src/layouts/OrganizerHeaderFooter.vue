@@ -8,9 +8,15 @@
           <a href="/organizer/event" class="jakarta-sb">Events</a>
         </div>
         <div class="row items-center">
-          <q-icon name="img:/icons/compe-icon.png" size="42px" />
-          <p class="jakarta-b q-mx-lg">{{ name }}</p>
-          <q-icon name="img:/icons/logout.png" size="24px" />
+          <div class="row items-center">
+            <q-btn round unelevated>
+              <q-avatar size="42px">
+                <img src="/icons/compe-icon.png" size="42px">
+              </q-avatar>
+            </q-btn>
+            <p class="jakarta-b q-mx-lg">{{ name }}</p>
+          </div>
+          <q-btn @click="logout()" flat round color="grey-10" icon="logout" />
         </div>
       </div>
     </q-header>
@@ -67,6 +73,12 @@ export default {
       } catch (err) {
         console.error(err)
       }
+    },
+
+    logout() {
+      localStorage.removeItem('UserId');
+      localStorage.removeItem('IsLoggedIn');
+      this.$router.push('/');
     }
   },
 

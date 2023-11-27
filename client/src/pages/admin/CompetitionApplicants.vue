@@ -21,6 +21,9 @@
             <q-card>
               <q-card-section>
                 <p>Apakah anda yakin ingin menjadikan user ini menjad juara?</p>
+                <p class="q-mt-md">Rank</p>
+                <q-input outlined v-model="rank" type="number"
+                  :rules="[(val) => !!val || 'Rank wajib diisi']" dense/>
               </q-card-section>
               <q-card-actions align="right">
                 <q-btn unelevated label="Jadikan Juara" color="primary" @click="makeWinnerUser(championUser)" no-caps />
@@ -44,7 +47,7 @@ export default {
 
   data() {
     return {
-      rank: 1,
+      rank: ref(null),
       showConfirmationDialog: ref(false),
       championUser: ref(null),
     }

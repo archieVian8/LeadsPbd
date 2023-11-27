@@ -12,6 +12,7 @@
           </div>
           <p class="q-mt-md">Kategori: <span class="jakarta-b">{{ competitionData.competitionCategory }}</span></p>
           <p class="q-mt-md">Tingkat: <span class="jakarta-b">{{ competitionData.tingkat }}</span></p>
+          <p class="q-mt-md">Hadiah: <span class="jakarta-b">Rp {{ competitionData.prizes }}</span></p>
           <p class="q-mt-md">Kapasitas Tersisa: <span class="jakarta-b">{{ competitionData.capacityTersisa }}</span></p>
         </div>
         <div class="col-5 right-container">
@@ -59,6 +60,7 @@ export default {
         const response = await api.post('viewCompetitionById', {
           competitionId: this.$route.query.compeId
         })
+        console.log(response);
         if (response.data.competitionName) {
           this.competitionData = response.data;
         } else {

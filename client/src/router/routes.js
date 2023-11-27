@@ -60,6 +60,9 @@ const routes = [
   {
     path: "/home",
     component: () => import("src/layouts/HeaderFooter.vue"),
+    meta: {
+      auth: true
+    },
     children: [
       { path: "", name: "UserHome", component: () => import("pages/user/Home.vue")},
     ],
