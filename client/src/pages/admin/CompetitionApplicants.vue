@@ -13,7 +13,7 @@
             row-key="index" virtual-scroll v-model:pagination="pagination" :rows-per-page-options="[0]">
             <template v-slot:body-cell-action="props">
               <div class="q-gutter-x-md row justify-center">
-                <q-btn color="green" @click="showConfirmationChampion(1)" label="Juara" no-caps />
+                <q-btn color="green" @click="showConfirmationChampion(props.row.index)" label="Juara" no-caps />
               </div>
             </template>
           </q-table>
@@ -120,7 +120,7 @@ export default {
         } else {
           const data = response.data
           this.rows = data.map((applicant, index) => ({
-            index: index,
+            index: index + 1,
             firstName: applicant.firstName,
             lastName: applicant.lastName,
             email: applicant.email,
@@ -139,26 +139,35 @@ export default {
     },
 
     showConfirmationChampion(userId) {
-      this.championUserId = userId
+      this.championUser = userId
       this.showConfirmationDialog = true;
     },
 
-    async makeWinnerUser() {
+    async makeWinnerUser(userId) {
       try {
+        const id = getUserId();
         const response = await api.post('chooseCompetitionWinnersRanked', {
-          organizerId: 1,
+          organizerId: id,
           competitionId: this.$route.query.compeId,
-          winnerInfo: `${this.rank},Juara ${this.rank}`
-        })
-        console.log(response);
-        Notify.create({
-          color: 'green',
-          message: 'Berhasil menambahkan juara',
-          position: 'top',
-          timeout: 2500
+          winnerInfo: `${userId},Juara ${this.rank}`
         });
-        this.rank = this.rank + 1;
-        this.showConfirmationDialog = false;
+        if (response.data.Status != "Pemenang berhasil ditentukan manual dengan peringkat") {
+          Notify.create({
+            color: 'red',
+            message: `${response.data.Status}`,
+            position: 'top',
+            timeout: 2500
+          });
+        } else {
+          Notify.create({
+            color: 'green',
+            message: 'Berhasil menambahkan juara',
+            position: 'top',
+            timeout: 2500
+          });
+          this.rank = this.rank + 1;
+          this.showConfirmationDialog = false;
+        }
       } catch (error) {
         console.log(error);
         Notify.create({
