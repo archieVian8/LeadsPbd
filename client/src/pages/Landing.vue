@@ -7,7 +7,7 @@
             <span>LEADS</span>
           </p>
           <p class="text-lg q-my-lg">Temukan Lomba, Event Akademik yang Tepat dengan Mudah dan Menyenangkan!</p>
-          <q-btn class="q-px-lg q-py-sm" unelevated color="primary" label="Mulai Sekarang" no-caps />
+          <q-btn @click="this.$router.push('/home')" class="q-px-lg q-py-sm" unelevated color="primary" label="Mulai Sekarang" no-caps />
         </div>
       </div>
       <div class="main-container">
@@ -70,7 +70,7 @@
         </div>
         <div class="column items-center q-mt-xl">
           <p class="jakarta-b q-mb-lg text-lg">Tunggu apalagi ayo mulai perjuanganmu dengan LEADS</p>
-          <q-btn class="q-px-lg q-py-sm" unelevated color="primary" label="Mulai Sekarang" no-caps />
+          <q-btn @click="this.$router.push('/home')" class="q-px-lg q-py-sm" unelevated color="primary" label="Mulai Sekarang" no-caps />
         </div>
       </div>
     </q-page>

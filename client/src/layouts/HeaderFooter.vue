@@ -2,18 +2,22 @@
   <q-layout>
     <q-header class="header column justify-center">
       <div class="main-container row items-center justify-between">
-        <img src="/images/logo-black.png" alt="Logo">
+        <img @click="this.$router.push('/')" src="/images/logo-black.png" alt="Logo" class="cursor-pointer">
         <div class="row items-center gap-md">
           <a href="/home" class="jakarta-sb q-mr-xl">Home</a>
           <a href="/achievement" class="jakarta-sb">Achievement</a>
         </div>
         <!-- Logged In -->
         <div v-if="isLogin" class="row items-center" style="cursor: pointer;">
-          <div @click="navigatAchievement()" class="row -tems-center">
-            <q-icon name="img:/icons/avatar.png" size="42px" />
-            <p class="jakarta-b q-mx-lg q-pt-sm">{{ name }}</p>
+          <div class="row items-center">
+            <q-btn round unelevated @click="navigatAchievement()">
+              <q-avatar size="42px">
+                <img src="/icons/avatar.png" size="42px">
+              </q-avatar>
+            </q-btn>
+            <p class="jakarta-b q-mx-lg">{{ name }}</p>
           </div>
-          <q-icon name="img:/icons/logout.png" size="24px" />
+          <q-btn @click="logout()" flat round color="grey-10" icon="logout" />
         </div>
         <!-- Not Logged In -->
         <div v-else>
@@ -88,12 +92,20 @@ export default {
       } catch (err) {
         console.error(err)
       }
+    },
+
+    logout() {
+      localStorage.removeItem('UserId');
+      localStorage.removeItem('IsLoggedIn');
+      this.$router.push('/home');
     }
   },
 
   mounted() {
     this.isLogin = getIsLoggedIn();
-    this.getuserById(getUserId());
+    if (this.isLogin) {
+      this.getuserById(getUserId());
+    }
   }
 }
 </script>

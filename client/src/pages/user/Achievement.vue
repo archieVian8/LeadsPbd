@@ -14,7 +14,7 @@
         </div>
         <div class="achievement-container ">
           <p class="jakarta-b text-md">Penghargaan</p>
-          <div v-for="achievement in userAchievements">
+          <div v-if="userAchievements.length > 0" v-for="achievement in userAchievements">
             <div class="row justify-start">
               <q-icon name="img:/icons/compe-icon.png" size="56px" class="q-mr-lg" />
               <div class="text-container">
@@ -26,6 +26,7 @@
             </div>
             <q-separator class="divider q-mt-md" />
           </div>
+          <p v-else class="jakarta-b text-grey text-md">User belum mempunyai penghargaan</p>
         </div>
       </div>
     </q-page>

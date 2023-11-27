@@ -30,16 +30,6 @@ const routes = [
     children: [
       { path: "login", name: "UserLogin", component: () => import("pages/auth/user/Login.vue")},
       { path: "register", name: "UserRegister", component: () => import("pages/auth/user/Register.vue")},
-      { path: "home", name: "UserHome", component: () => import("pages/user/Home.vue")},
-    ],
-  },
-
-  {
-    path: "/user",
-    component: () => import("src/layouts/BlankLayout.vue"),
-    children: [
-      { path: "login", name: "UserLogin", component: () => import("pages/auth/user/Login.vue")},
-      { path: "register", name: "UserRegister", component: () => import("pages/auth/user/Register.vue")},
     ],
   },
 
@@ -47,6 +37,9 @@ const routes = [
   {
     path: "/competition",
     component: () => import("src/layouts/HeaderFooter.vue"),
+    meta: {
+      auth: true
+    },
     children: [
       { path: "", name: "CompetitionDetail", component: () => import("pages/user/CompetitionDetail.vue")},
     ],
@@ -55,6 +48,9 @@ const routes = [
   {
     path: "/event",
     component: () => import("src/layouts/HeaderFooter.vue"),
+    meta: {
+      auth: true
+    },
     children: [
       { path: "", name: "EVentDetail", component: () => import("pages/user/EventDetail.vue")},
     ],
@@ -72,6 +68,9 @@ const routes = [
   {
     path: "/achievement",
     component: () => import("src/layouts/HeaderFooter.vue"),
+    meta: {
+      auth: true
+    },
     children: [
       { path: "", name: "Achievment", component: () => import("pages/user/Achievement.vue")},
     ],
@@ -89,6 +88,9 @@ const routes = [
   {
     path: "/organizer",
     component: () => import("src/layouts/OrganizerHeaderFooter.vue"),
+    meta: {
+      auth: true
+    },
     children: [
       { path: "competition", name: "OrganizerCompetition", component: () => import("pages/admin/Competition.vue")},
       { path: "event", name: "OrganizerEvents", component: () => import("pages/admin/Events.vue")},
@@ -98,6 +100,9 @@ const routes = [
   {
     path: "/organizer/competition",
     component: () => import("src/layouts/OrganizerHeaderFooter.vue"),
+    meta: {
+      auth: true
+    },
     children: [
       { path: "create", name: "AddCompetition", component: () => import("pages/admin/AddCompetition.vue")},
       { path: "applicants", name: "CompetitionApplicants", component: () => import("pages/admin/CompetitionApplicants.vue")},
@@ -107,6 +112,9 @@ const routes = [
   {
     path: "/organizer/event",
     component: () => import("src/layouts/OrganizerHeaderFooter.vue"),
+    meta: {
+      auth: true
+    },
     children: [
       { path: "create", name: "AddEvent", component: () => import("pages/admin/AddEvent.vue")},
       { path: "applicants", name: "EventApplicants", component: () => import("pages/admin/EventApplicants.vue")},
