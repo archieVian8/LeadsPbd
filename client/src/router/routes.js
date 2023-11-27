@@ -70,6 +70,23 @@ const routes = [
   },
 
   {
+    path: "/achievement",
+    component: () => import("src/layouts/HeaderFooter.vue"),
+    children: [
+      { path: "", name: "Achievment", component: () => import("pages/user/Achievement.vue")},
+    ],
+  },
+
+  {
+    path: "/organizer",
+    component: () => import("src/layouts/BlankLayout.vue"),
+    children: [
+      { path: "login", name: "OrganizerLogin", component: () => import("pages/auth/admin/Login.vue")},
+      { path: "register", name: "OrganizerRegister", component: () => import("pages/auth/admin/Register.vue")},
+    ],
+  },
+
+  {
     path: "/organizer",
     component: () => import("src/layouts/OrganizerHeaderFooter.vue"),
     children: [
